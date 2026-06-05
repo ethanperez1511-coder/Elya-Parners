@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Business Application — Elya Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --navy:#0B1A2B;--navy-900:#081320;--navy-800:#0F2235;--navy-700:#16304a;
+  --paper:#F6F3EC;--paper-2:#EFEADF;--white:#FCFAF5;
+  --gold:#C2A05B;--gold-soft:#D8BE86;--gold-deep:#A6863F;
+  --ink:#0B1A2B;--ink-60:rgba(11,26,43,.62);--ink-40:rgba(11,26,43,.42);
+  --paper-70:rgba(246,243,236,.72);--paper-45:rgba(246,243,236,.46);
+  --hair-light:rgba(246,243,236,.18);--hair-dark:rgba(11,26,43,.14);--hair-mid:rgba(11,26,43,.22);
+  --serif:"Fraunces",Georgia,serif;--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --t-h2:clamp(1.9rem,4vw,3rem);--t-h3:clamp(1.3rem,2.1vw,1.7rem);
+  --t-body:clamp(1rem,1.05vw,1.06rem);--t-eyebrow:clamp(.68rem,.82vw,.74rem);
+  --gutter:clamp(1.25rem,5vw,6.5rem);--maxw:1340px;
+  --ease:cubic-bezier(.22,.61,.36,1);--ease-out:cubic-bezier(.16,1,.3,1);
+  --radius:2px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:var(--t-body);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+h1,h2,h3,h4{margin:0;font-family:var(--serif);font-weight:400;line-height:1.05;letter-spacing:-.012em}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--navy)}
+.eyebrow{font-size:var(--t-eyebrow);font-weight:500;letter-spacing:.3em;text-transform:uppercase}
+.serif-it{font-style:italic;font-weight:300}
+.gold{color:var(--gold-deep)}
+
+/* grain */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;z-index:9999;pointer-events:none;opacity:.045;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;gap:2rem;
+  padding:1.1rem var(--gutter);background:rgba(8,19,32,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  color:var(--paper);border-bottom:1px solid var(--hair-light)}
+.brand{font-family:var(--serif);font-size:1.3rem;display:flex;align-items:baseline;gap:.5ch;white-space:nowrap}
+.brand b{font-weight:500}
+.brand .mark{width:9px;height:9px;border-radius:50%;background:var(--gold);display:inline-block;transform:translateY(-1px)}
+.nav .back{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-70);display:inline-flex;align-items:center;gap:.7ch;transition:color .3s var(--ease)}
+.nav .back:hover{color:var(--paper)}
+.nav .back .ar{transition:transform .35s var(--ease)}
+.nav .back:hover .ar{transform:translateX(-5px)}
+
+/* header band */
+.app-head{background:var(--navy);color:var(--paper);position:relative;overflow:hidden;padding:clamp(3rem,6vw,5.5rem) 0 clamp(2.6rem,5vw,4rem)}
+.app-head .glow{position:absolute;inset:0;background:radial-gradient(90% 120% at 92% -10%,rgba(194,160,91,.16),transparent 55%)}
+.app-head .inner{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+.app-head .eyebrow{color:var(--gold-soft);display:flex;align-items:center;gap:1ch;margin-bottom:1.4rem}
+.app-head .eyebrow .tick{width:30px;height:1px;background:var(--gold)}
+.app-head h1{font-size:clamp(2.6rem,6vw,5rem);font-weight:360;max-width:18ch}
+.app-head h1 em{font-style:italic;color:var(--gold-soft);font-weight:300}
+.app-head .sub{margin-top:1.4rem;max-width:52ch;color:var(--paper-70);font-weight:300;font-size:clamp(1.05rem,1.4vw,1.25rem)}
+
+/* layout */
+.shell{max-width:var(--maxw);margin:0 auto;padding:clamp(2.5rem,5vw,4.5rem) var(--gutter) clamp(4rem,8vw,7rem);
+  display:grid;grid-template-columns:300px 1fr;gap:clamp(2.5rem,5vw,5.5rem);align-items:start}
+
+/* rail */
+.rail{position:sticky;top:96px;display:flex;flex-direction:column;gap:0}
+.rail .rail-no{font-family:var(--serif);font-size:.95rem;color:var(--gold-deep);letter-spacing:.05em}
+.rail nav{display:flex;flex-direction:column;border-top:1px solid var(--hair-dark)}
+.rail a{display:flex;gap:1.1ch;align-items:baseline;padding:1rem 0;border-bottom:1px solid var(--hair-dark);color:var(--ink-60);transition:color .3s var(--ease),padding .3s var(--ease);position:relative}
+.rail a .rn{font-family:var(--serif);font-size:.9rem;color:var(--gold-deep);min-width:2ch;opacity:.7;transition:opacity .3s}
+.rail a .rt{font-size:.92rem;letter-spacing:.01em}
+.rail a::before{content:"";position:absolute;left:-14px;top:50%;width:5px;height:5px;border-radius:50%;background:var(--gold);transform:translateY(-50%) scale(0);transition:transform .35s var(--ease)}
+.rail a.active{color:var(--ink);padding-left:14px}
+.rail a.active::before{transform:translateY(-50%) scale(1)}
+.rail a.active .rn{opacity:1}
+.rail .assure{margin-top:2rem;padding-top:1.6rem;border-top:1px solid var(--hair-dark);display:flex;flex-direction:column;gap:1.1rem}
+.rail .assure .row{display:flex;gap:.9ch;align-items:flex-start;color:var(--ink-60);font-size:.86rem;line-height:1.45}
+.rail .assure svg{flex:none;margin-top:2px;color:var(--gold-deep)}
+.rail .assure b{color:var(--ink);font-weight:500}
+
+/* form */
+form{display:flex;flex-direction:column;gap:clamp(3rem,5vw,4.5rem)}
+.fsec{scroll-margin-top:90px}
+.fsec-head{display:flex;align-items:baseline;gap:1.2ch;padding-bottom:1.4rem;margin-bottom:2rem;border-bottom:1px solid var(--hair-mid)}
+.fsec-head .no{font-family:var(--serif);font-size:1.05rem;color:var(--gold-deep);font-weight:500}
+.fsec-head h2{font-size:var(--t-h3);font-weight:380}
+.fsec-head .ct{margin-left:auto;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-40);white-space:nowrap}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 1.75rem}
+.grid-3{display:grid;grid-template-columns:1.6fr .8fr .8fr;gap:1.5rem 1.75rem}
+.col-2{grid-column:span 2}
+
+.field{display:flex;flex-direction:column;gap:.55rem;min-width:0}
+.field label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-60);font-weight:500}
+.field label .req{color:var(--gold-deep);margin-left:.3ch}
+.field input,.field select,.field textarea{
+  font-family:var(--sans);font-size:1rem;color:var(--ink);background:var(--white);
+  border:1px solid var(--hair-mid);border-radius:var(--radius);padding:.85rem 1rem;outline:none;width:100%;
+  transition:border-color .3s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease);
+}
+.field textarea{resize:vertical;min-height:110px;line-height:1.55}
+.field input::placeholder,.field textarea::placeholder{color:var(--ink-40)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(194,160,91,.14);background:#fff}
+.field select{appearance:none;-webkit-appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A6863F' stroke-width='1.3' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.6rem}
+.field .hint{font-size:.78rem;color:var(--ink-40)}
+
+/* segmented yes/no */
+.seg{display:inline-flex;border:1px solid var(--hair-mid);border-radius:var(--radius);overflow:hidden;width:fit-content;background:var(--white)}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{padding:.7rem 1.6rem;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;color:var(--ink-60);transition:color .3s var(--ease),background .3s var(--ease);border-right:1px solid var(--hair-mid)}
+.seg label:last-of-type{border-right:0}
+.seg input:checked + label{background:var(--navy);color:var(--paper)}
+
+/* dropzone */
+.dropzone{border:1.5px dashed var(--hair-mid);border-radius:var(--radius);padding:clamp(2rem,4vw,3rem);text-align:center;background:var(--white);
+  transition:border-color .3s var(--ease),background .3s var(--ease);cursor:pointer}
+.dropzone:hover,.dropzone.drag{border-color:var(--gold);background:#fff}
+.dropzone .ic{width:42px;height:42px;border-radius:50%;border:1px solid var(--gold);color:var(--gold-deep);display:grid;place-items:center;margin:0 auto 1rem}
+.dropzone .big{font-family:var(--serif);font-size:1.25rem;font-weight:340}
+.dropzone .small{margin-top:.5rem;color:var(--ink-40);font-size:.85rem}
+.dropzone .browse{color:var(--gold-deep);text-decoration:underline;text-underline-offset:3px}
+.filelist{margin-top:1.2rem;display:flex;flex-direction:column;gap:.6rem}
+.filelist .file{display:flex;align-items:center;gap:.9ch;padding:.7rem 1rem;background:var(--paper-2);border-radius:var(--radius);font-size:.9rem}
+.filelist .file .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.filelist .file .sz{color:var(--ink-40);font-size:.8rem}
+.filelist .file .x{cursor:pointer;color:var(--ink-40);border:0;background:none;font-size:1.1rem;line-height:1;padding:0 .2rem}
+.filelist .file .x:hover{color:var(--gold-deep)}
+
+/* terms */
+.terms-box{background:var(--white);border:1px solid var(--hair-mid);border-radius:var(--radius);padding:clamp(1.4rem,2.5vw,2rem);max-height:230px;overflow-y:auto;color:var(--ink-60);font-size:.9rem;line-height:1.65}
+.terms-box h4{font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);margin-bottom:.8rem}
+.terms-box p{margin-bottom:.9rem}
+.terms-box::-webkit-scrollbar{width:8px}
+.terms-box::-webkit-scrollbar-thumb{background:var(--hair-mid);border-radius:8px}
+.agree{display:flex;gap:1ch;align-items:flex-start;margin-top:1.4rem;cursor:pointer;font-size:.95rem;color:var(--ink)}
+.agree input{position:absolute;opacity:0}
+.agree .box{flex:none;width:20px;height:20px;border:1px solid var(--hair-mid);border-radius:var(--radius);background:var(--white);display:grid;place-items:center;margin-top:1px;transition:all .25s var(--ease)}
+.agree .box svg{opacity:0;transform:scale(.6);transition:all .25s var(--ease);color:var(--paper)}
+.agree input:checked + .box{background:var(--navy);border-color:var(--navy)}
+.agree input:checked + .box svg{opacity:1;transform:scale(1)}
+
+/* signature */
+.sig-grid{display:grid;grid-template-columns:1.4fr .9fr;gap:1.75rem;margin-top:2rem}
+.sig-wrap{display:flex;flex-direction:column;gap:.55rem}
+.sig-pad{position:relative;background:var(--white);border:1px solid var(--hair-mid);border-radius:var(--radius);height:150px;touch-action:none;cursor:crosshair}
+.sig-pad canvas{display:block;width:100%;height:100%;border-radius:var(--radius)}
+.sig-pad .line{position:absolute;left:1rem;right:1rem;bottom:36px;border-bottom:1px solid var(--hair-dark);pointer-events:none}
+.sig-pad .x{position:absolute;left:1rem;bottom:18px;color:var(--ink-40);font-size:1.1rem;pointer-events:none}
+.sig-pad .ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink-40);font-style:italic;font-family:var(--serif);font-size:1.1rem;pointer-events:none;transition:opacity .3s}
+.sig-clear{align-self:flex-start;background:none;border:0;color:var(--gold-deep);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;padding:.2rem 0}
+.sig-clear:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* submit */
+.submit-bar{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;padding-top:2.4rem;border-top:1px solid var(--hair-mid)}
+.submit-bar .note{display:flex;align-items:center;gap:.8ch;color:var(--ink-60);font-size:.9rem}
+.submit-bar .note .pulse{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(194,160,91,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(194,160,91,.55)}70%{box-shadow:0 0 0 8px rgba(194,160,91,0)}100%{box-shadow:0 0 0 0 rgba(194,160,91,0)}}
+.btn{position:relative;display:inline-flex;align-items:center;gap:.7ch;font-family:var(--sans);font-size:.82rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  padding:1.1em 2.4em;border:1px solid var(--gold);background:var(--gold);color:var(--navy);cursor:pointer;overflow:hidden;border-radius:var(--radius);
+  transition:transform .35s var(--ease-out),box-shadow .45s var(--ease)}
+.btn span{position:relative;z-index:2}
+.btn::before{content:"";position:absolute;inset:0;z-index:1;background:var(--gold-deep);transform:translateX(-101%);transition:transform .5s var(--ease)}
+.btn:hover::before{transform:translateX(0)}
+.btn:hover{box-shadow:0 18px 40px -18px rgba(0,0,0,.4)}
+
+/* success */
+.success{display:none;text-align:center;padding:clamp(3rem,7vw,6rem) 0}
+.success.show{display:block;animation:fadeUp .8s var(--ease-out)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.success .seal{width:88px;height:88px;border-radius:50%;border:1px solid var(--gold);color:var(--gold-deep);display:grid;place-items:center;margin:0 auto 2rem}
+.success h2{font-size:var(--t-h2);font-weight:340;max-width:18ch;margin:0 auto}
+.success h2 em{font-style:italic;color:var(--gold-deep);font-weight:300}
+.success p{margin:1.4rem auto 0;max-width:46ch;color:var(--ink-60)}
+.success .ref{margin-top:2rem;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-40)}
+.success .ref b{color:var(--ink);font-family:var(--serif);letter-spacing:.02em}
+
+/* footer */
+.foot{background:var(--navy-900);color:var(--paper);padding:clamp(2.5rem,4vw,3.5rem) 0}
+.foot .inner{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter);display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;color:var(--paper-45);font-size:.82rem}
+.foot .brand{font-size:1.1rem;color:var(--paper)}
+.foot a{color:var(--paper-45);transition:color .3s}
+.foot a:hover{color:var(--gold-soft)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:1040px){
+  .shell{grid-template-columns:1fr;gap:2.5rem}
+  .rail{position:static;flex-direction:column}
+  .rail nav{flex-direction:row;flex-wrap:wrap;border-top:0;gap:.4rem}
+  .rail a{border:1px solid var(--hair-dark);border-radius:var(--radius);padding:.7rem 1rem}
+  .rail a::before{display:none}
+  .rail a.active{padding-left:1rem;background:var(--navy);color:var(--paper)}
+  .rail a.active .rn{color:var(--gold-soft)}
+  .rail .assure{display:none}
+}
+@media (max-width:640px){
+  .grid,.grid-3{grid-template-columns:1fr}
+  .col-2{grid-column:auto}
+  .sig-grid{grid-template-columns:1fr}
+  .nav .brand b{display:inline}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="brand" href="Elya Partners v2.html"><span class="mark"></span><span>Elya&nbsp;<b>Partners</b></span></a>
+  <a class="back" href="Elya Partners v2.html"><span class="ar">←</span> Back to site</a>
+</header>
+
+<section class="app-head">
+  <div class="glow"></div>
+  <div class="inner">
+    <div class="eyebrow"><span class="tick"></span>Private Business Lending</div>
+    <h1>Business <em>application.</em></h1>
+    <p class="sub">A few details about your business and the capital you need. Most applications take under ten minutes — a member of our team responds within one business day.</p>
+  </div>
+</section>
+
+<div class="shell">
+  <!-- RAIL -->
+  <aside class="rail">
+    <nav id="railNav">
+      <a href="#sec-business" class="active"><span class="rn">01</span><span class="rt">Business Information</span></a>
+      <a href="#sec-owner"><span class="rn">02</span><span class="rt">Owner Information</span></a>
+      <a href="#sec-bank"><span class="rn">03</span><span class="rt">Bank Statements</span></a>
+      <a href="#sec-terms"><span class="rn">04</span><span class="rt">Terms &amp; Signature</span></a>
+    </nav>
+    <div class="assure">
+      <div class="row"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1l5.5 2.2v3.6C13.5 10.5 11 13.5 8 15c-3-1.5-5.5-4.5-5.5-8.2V3.2L8 1z" stroke="currentColor" stroke-width="1.1"/><path d="M5.6 8l1.7 1.7L10.6 6" stroke="currentColor" stroke-width="1.1"/></svg><span><b>Bank-grade encryption.</b> Your information is transmitted securely and never sold.</span></div>
+      <div class="row"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.1"/><path d="M8 4.5V8l2.4 1.4" stroke="currentColor" stroke-width="1.1"/></svg><span><b>One business day.</b> A real decision-maker reviews every application.</span></div>
+      <div class="row"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 13V9M8 13V5M13.5 13V3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><span><b>No obligation.</b> Applying does not affect your credit and carries no commitment.</span></div>
+    </div>
+  </aside>
+
+  <!-- FORM -->
+  <div>
+    <form id="appForm" novalidate>
+      <!-- 01 BUSINESS -->
+      <section class="fsec rv in" id="sec-business">
+        <div class="fsec-head"><span class="no">01</span><h2>Business Information</h2><span class="ct">Required unless noted</span></div>
+        <div class="grid">
+          <div class="field col-2"><label>Business Legal Name <span class="req">*</span></label><input type="text" name="legal_name" placeholder="Acme Holdings, LLC" required /></div>
+          <div class="field"><label>Business DBA</label><input type="text" name="dba" placeholder="Acme" /></div>
+          <div class="field"><label>Tax ID / EIN <span class="req">*</span></label><input type="text" name="ein" placeholder="00-0000000" required /></div>
+          <div class="field"><label>Entity Type <span class="req">*</span></label>
+            <select name="entity" required><option value="" disabled selected>Select entity type</option><option>LLC</option><option>Corporation</option><option>Sole Proprietorship</option><option>Partnership</option><option>Other</option></select>
+          </div>
+          <div class="field"><label>Capital You're Looking For <span class="req">*</span></label><input type="text" name="amount" placeholder="$250,000" required /></div>
+          <div class="field"><label>Nature of Business <span class="req">*</span></label><input type="text" name="nature" placeholder="Wholesale distribution" required /></div>
+          <div class="field"><label>Product / Service Offered</label><input type="text" name="product" placeholder="What you sell" /></div>
+          <div class="field"><label>Length of Ownership</label><input type="text" name="ownership_length" placeholder="e.g. 6 years" /></div>
+          <div class="field"><label>Date of Incorporation</label><input type="date" name="incorp_date" /></div>
+          <div class="field col-2"><label>Business Street Address <span class="req">*</span></label><input type="text" name="biz_street" placeholder="120 Hudson Street, Suite 900" required /></div>
+          <div class="field"><label>City <span class="req">*</span></label><input type="text" name="biz_city" placeholder="New York" required /></div>
+          <div class="grid-3 col-2" style="grid-column:1/-1">
+            <div class="field"><label>Use of Funds <span class="req">*</span></label><input type="text" name="use_of_funds" placeholder="Expansion, inventory, payroll…" required /></div>
+            <div class="field"><label>State <span class="req">*</span></label><input type="text" name="biz_state" placeholder="NY" required /></div>
+            <div class="field"><label>Zip Code <span class="req">*</span></label><input type="text" name="biz_zip" placeholder="10013" required /></div>
+          </div>
+          <div class="field"><label>Do You Accept Credit Cards?</label>
+            <div class="seg"><input type="radio" id="cc-y" name="credit_cards" value="yes"><label for="cc-y">Yes</label><input type="radio" id="cc-n" name="credit_cards" value="no"><label for="cc-n">No</label></div>
+          </div>
+          <div class="field"><label>Open MCA Positions?</label>
+            <div class="seg"><input type="radio" id="mca-y" name="mca" value="yes"><label for="mca-y">Yes</label><input type="radio" id="mca-n" name="mca" value="no"><label for="mca-n">No</label></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 OWNER -->
+      <section class="fsec rv" id="sec-owner">
+        <div class="fsec-head"><span class="no">02</span><h2>Business Owner Information</h2></div>
+        <div class="grid">
+          <div class="field"><label>Full Name <span class="req">*</span></label><input type="text" name="owner_name" placeholder="Jane Doe" required /></div>
+          <div class="field"><label>Social Security Number <span class="req">*</span></label><input type="text" name="ssn" placeholder="•••-••-••••" autocomplete="off" required /></div>
+          <div class="field"><label>Date of Birth <span class="req">*</span></label><input type="date" name="dob" required /></div>
+          <div class="field"><label>Credit Score <span class="req">*</span></label>
+            <select name="credit_score" required><option value="" disabled selected>Select range</option><option>500–550</option><option>550–600</option><option>600–650</option><option>650–700</option><option>700–750</option><option>750–800</option><option>800+</option></select>
+          </div>
+          <div class="field col-2"><label>Home Street Address <span class="req">*</span></label><input type="text" name="home_street" placeholder="Street address" required /></div>
+          <div class="grid-3 col-2" style="grid-column:1/-1">
+            <div class="field"><label>City <span class="req">*</span></label><input type="text" name="home_city" placeholder="City" required /></div>
+            <div class="field"><label>State <span class="req">*</span></label><input type="text" name="home_state" placeholder="State" required /></div>
+            <div class="field"><label>Zip Code <span class="req">*</span></label><input type="text" name="home_zip" placeholder="Zip" required /></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 BANK -->
+      <section class="fsec rv" id="sec-bank">
+        <div class="fsec-head"><span class="no">03</span><h2>Bank Statements</h2><span class="ct">PDF · JPG · PNG — max 10MB each</span></div>
+        <p style="color:var(--ink-60);max-width:54ch;margin-bottom:1.4rem">Upload three to six months of business bank statements. This helps us understand your cash cycle and structure terms that fit.</p>
+        <div class="dropzone" id="dropzone">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 13V3M6 6.5L10 2.5l4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 13v3a1 1 0 001 1h12a1 1 0 001-1v-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+          <div class="big">Drag &amp; drop files here</div>
+          <div class="small">or <span class="browse">browse your device</span> · PDF, JPG, PNG — max 10MB each</div>
+          <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png" hidden />
+        </div>
+        <div class="filelist" id="fileList"></div>
+      </section>
+
+      <!-- 04 TERMS -->
+      <section class="fsec rv" id="sec-terms">
+        <div class="fsec-head"><span class="no">04</span><h2>Terms &amp; Signature</h2></div>
+        <div class="terms-box" tabindex="0">
+          <h4>Authorization &amp; Consent</h4>
+          <p>By signing below, the business and the business owner or officer named above (together, "you") authorize Elya Partners and its representatives, successors, and assigns to obtain business, personal, and investigative credit reports and related information about you from one or more consumer reporting agencies and other third parties in connection with this application and any financing it may lead to.</p>
+          <p>You authorize Elya Partners to share this application and the information gathered with funding partners and service providers solely for the purpose of evaluating and, where appropriate, extending financing. You confirm that the information you have provided is true and complete to the best of your knowledge.</p>
+          <p>You consent to be contacted by Elya Partners by phone, text, or email at the contact details provided. This authorization remains in effect for as long as needed to evaluate and service any resulting financing, and may be revoked in writing at any time, except where action has already been taken in reliance on it.</p>
+        </div>
+        <label class="agree"><input type="checkbox" id="agree" required><span class="box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>I have read and agree to the authorization and consent stated above.</span></label>
+
+        <div class="sig-grid">
+          <div class="sig-wrap">
+            <label style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-60);font-weight:500">Digital Signature <span style="color:var(--gold-deep)">*</span></label>
+            <div class="sig-pad" id="sigPad">
+              <canvas id="sigCanvas"></canvas>
+              <div class="line"></div><div class="x">✕</div>
+              <div class="ph" id="sigPh">Sign here</div>
+            </div>
+            <button type="button" class="sig-clear" id="sigClear">Clear signature</button>
+          </div>
+          <div class="field" style="align-self:flex-start">
+            <label>Date <span class="req">*</span></label>
+            <input type="date" name="sign_date" id="signDate" required />
+          </div>
+        </div>
+
+        <div class="submit-bar">
+          <p class="note"><span class="pulse"></span>We'll respond within one business day.</p>
+          <button class="btn" type="submit"><span id="submitLabel">Submit Application</span></button>
+        </div>
+      </section>
+    </form>
+
+    <!-- SUCCESS -->
+    <div class="success" id="success">
+      <div class="seal"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path d="M10 17.5l4.5 4.5L24 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h2>Application received. Thank you for considering <em>Elya.</em></h2>
+      <p>A member of our team is reviewing your inquiry and will be in touch within one business day to discuss next steps.</p>
+      <div class="ref">Reference <b id="refNo">ELYA-000000</b></div>
+    </div>
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="inner">
+    <span class="brand">Elya Partners</span>
+    <span>© 2026 Elya Partners. All rights reserved. · <a href="Elya Partners v2.html#contact">Contact</a> · <a href="Elya Partners v2.html">Home</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* default date = today */
+  var today = new Date().toISOString().slice(0,10);
+  var sd = document.getElementById('signDate'); if(sd) sd.value = today;
+
+  /* reveal */
+  var io = new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+  /* rail active section */
+  var links = [].slice.call(document.querySelectorAll('#railNav a'));
+  var secs = links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  var spy = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        var i = secs.indexOf(e.target);
+        links.forEach(function(l){l.classList.remove('active');});
+        if(links[i]) links[i].classList.add('active');
+      }
+    });
+  },{rootMargin:'-30% 0px -60% 0px',threshold:0});
+  secs.forEach(function(s){if(s) spy.observe(s);});
+
+  /* file upload */
+  var dz = document.getElementById('dropzone');
+  var fi = document.getElementById('fileInput');
+  var fl = document.getElementById('fileList');
+  var files = [];
+  function fmt(b){return b<1024?b+' B':b<1048576?(b/1024).toFixed(0)+' KB':(b/1048576).toFixed(1)+' MB';}
+  function render(){
+    fl.innerHTML='';
+    files.forEach(function(f,idx){
+      var d=document.createElement('div');d.className='file';
+      d.innerHTML='<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 1.5h5L13 5v9.5a.5.5 0 01-.5.5h-9A.5.5 0 013 14.5v-12A.5.5 0 013.5 1.5z" stroke="%23A6863F" stroke-width="1"/><path d="M9 1.5V5h4" stroke="%23A6863F" stroke-width="1"/></svg><span class="nm">'+f.name+'</span><span class="sz">'+fmt(f.size)+'</span><button type="button" class="x" data-i="'+idx+'">×</button>';
+      fl.appendChild(d);
+    });
+    fl.querySelectorAll('.x').forEach(function(b){b.addEventListener('click',function(){files.splice(+b.dataset.i,1);render();});});
+  }
+  function add(list){[].slice.call(list).forEach(function(f){files.push(f);});render();}
+  dz.addEventListener('click',function(){fi.click();});
+  fi.addEventListener('change',function(){add(fi.files);fi.value='';});
+  ['dragenter','dragover'].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.add('drag');});});
+  ['dragleave','drop'].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.remove('drag');});});
+  dz.addEventListener('drop',function(e){if(e.dataTransfer&&e.dataTransfer.files)add(e.dataTransfer.files);});
+
+  /* signature pad */
+  var pad=document.getElementById('sigPad');
+  var canvas=document.getElementById('sigCanvas');
+  var ph=document.getElementById('sigPh');
+  var ctx=canvas.getContext('2d');
+  var drawing=false,hasInk=false,last=null;
+  function resize(){
+    var r=pad.getBoundingClientRect();var dpr=window.devicePixelRatio||1;
+    var img = hasInk ? canvas.toDataURL() : null;
+    canvas.width=r.width*dpr;canvas.height=r.height*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.lineWidth=1.8;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#0B1A2B';
+    if(img){var im=new Image();im.onload=function(){ctx.drawImage(im,0,0,r.width,r.height);};im.src=img;}
+  }
+  setTimeout(resize,60);window.addEventListener('resize',resize);
+  function pos(e){var r=canvas.getBoundingClientRect();var t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top};}
+  function start(e){drawing=true;last=pos(e);if(!hasInk){hasInk=true;ph.style.opacity='0';}e.preventDefault();}
+  function move(e){if(!drawing)return;var p=pos(e);ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke();last=p;e.preventDefault();}
+  function end(){drawing=false;}
+  pad.addEventListener('mousedown',start);window.addEventListener('mousemove',move);window.addEventListener('mouseup',end);
+  pad.addEventListener('touchstart',start,{passive:false});pad.addEventListener('touchmove',move,{passive:false});pad.addEventListener('touchend',end);
+  document.getElementById('sigClear').addEventListener('click',function(){ctx.clearRect(0,0,canvas.width,canvas.height);hasInk=false;ph.style.opacity='1';});
+
+  /* submit */
+  var form=document.getElementById('appForm');
+  var label=document.getElementById('submitLabel');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var firstInvalid=null;
+    form.querySelectorAll('[required]').forEach(function(el){
+      var bad = el.type==='checkbox' ? !el.checked : !String(el.value).trim();
+      if(bad && !firstInvalid){firstInvalid=el;}
+      if(bad && (el.tagName==='INPUT'||el.tagName==='SELECT'||el.tagName==='TEXTAREA')){el.style.borderColor='#b5503a';}
+      else if(el.style){el.style.borderColor='';}
+    });
+    if(!hasInk && !firstInvalid){firstInvalid=document.getElementById('sigPad');}
+    if(firstInvalid){
+      label.textContent='Complete required fields';
+      var top=firstInvalid.getBoundingClientRect().top+window.scrollY-120;
+      window.scrollTo({top:top,behavior:reduce?'auto':'smooth'});
+      setTimeout(function(){label.textContent='Submit Application';},2200);
+      return;
+    }
+    label.textContent='Submitting…';
+    setTimeout(function(){
+      form.style.display='none';
+      var s=document.getElementById('success');s.classList.add('show');
+      document.getElementById('refNo').textContent='ELYA-'+Math.floor(100000+Math.random()*900000);
+      var top=s.getBoundingClientRect().top+window.scrollY-160;
+      window.scrollTo({top:top,behavior:reduce?'auto':'smooth'});
+    },900);
+  });
+})();
+</script>
+</body>
+</html>

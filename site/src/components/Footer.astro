@@ -1,0 +1,105 @@
+---
+interface Props {
+  variant?: 'landing' | 'application';
+}
+const { variant = 'landing' } = Astro.props;
+---
+
+{variant === 'landing' ? (
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="col brandcol">
+          <div class="brand"><img src="/elya-logo.svg" alt="Elya Partners" class="brand-logo" /></div>
+          <p class="blurb">A private lender built for growing businesses — fast, flexible, fairly-priced capital, aligned with your goals.</p>
+        </div>
+        <div class="col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#solutions">Solutions</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="/apply">Apply Now</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <h4>Reach us</h4>
+          <ul>
+            <li><a href="mailto:capital@elyapartners.com">capital@elyapartners.com</a></li>
+            <li><a href="tel:+12120000000">+1 (212) 000-0000</a></li>
+            <li>120 Hudson Street, Suite 900<br />New York, NY 10013</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Elya Partners. All rights reserved.</span>
+        <span class="lks"><a href="#top">Privacy</a><a href="#top">Terms</a><a href="#top">Disclosures</a></span>
+      </div>
+    </div>
+  </footer>
+) : (
+  <footer class="foot">
+    <div class="foot-inner">
+      <span class="brand"><img src="/elya-logo.svg" alt="Elya Partners" class="brand-logo brand-logo--sm" /></span>
+      <span>&copy; 2026 Elya Partners. All rights reserved. &middot; <a href="/#contact">Contact</a> &middot; <a href="/">Home</a></span>
+    </div>
+  </footer>
+)}
+
+<style>
+  .footer {
+    background: var(--navy-900); color: var(--paper);
+    padding: clamp(4rem,7vw,6rem) 0 clamp(2rem,3vw,3rem);
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+    gap: clamp(2rem,5vw,4rem); padding-bottom: clamp(3rem,5vw,4rem);
+    border-bottom: 1px solid var(--hair-light);
+  }
+  .brand {
+    display: flex; align-items: center; margin-bottom: 1.2rem;
+  }
+  .brand-logo {
+    height: clamp(42px, 5vw, 56px); width: auto; display: block;
+  }
+  .brand-logo--sm {
+    height: 30px;
+  }
+  .blurb { color: var(--paper-45); max-width: 34ch; font-weight: 300; }
+  .col h4 {
+    font-family: var(--sans); font-size: .7rem; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--gold-soft); font-weight: 500; margin: 0 0 1.3rem;
+  }
+  .col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .85rem; }
+  .col a, .col li { color: var(--paper-70); font-size: .95rem; transition: color .3s var(--ease); }
+  .col a:hover { color: var(--gold-soft); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    padding-top: 2rem; color: var(--paper-45); font-size: .82rem; letter-spacing: .04em;
+  }
+  .lks { display: flex; gap: 2rem; }
+  .lks a { color: var(--paper-45); transition: color .3s var(--ease); }
+  .lks a:hover { color: var(--gold-soft); }
+
+  /* App footer */
+  .foot {
+    background: var(--navy-900); color: var(--paper);
+    padding: clamp(2.5rem,4vw,3.5rem) 0;
+  }
+  .foot-inner {
+    max-width: 1340px; margin: 0 auto; padding-inline: var(--gutter);
+    display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    color: var(--paper-45); font-size: .82rem;
+  }
+  .foot .brand { margin-bottom: 0; }
+  .foot a { color: var(--paper-45); transition: color .3s; }
+  .foot a:hover { color: var(--gold-soft); }
+
+  @media (max-width: 980px) {
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .brandcol { grid-column: 1 / -1; }
+  }
+  @media (max-width: 680px) {
+    .footer-top { grid-template-columns: 1fr; }
+  }
+</style>
