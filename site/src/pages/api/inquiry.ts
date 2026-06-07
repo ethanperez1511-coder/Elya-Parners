@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { notifyInquiry } from '../../lib/email';
+import { supabase } from '../../lib/supabase';
 
 export const prerender = false;
 
@@ -15,13 +15,18 @@ export const POST: APIRoute = async ({ request }) => {
       return json({ error: 'A valid email is required.' }, 400);
     }
 
-    await notifyInquiry({
+    const { error } = await supabase.from('inquiries').insert({
       name: name.trim(),
       email: email.trim(),
-      company: company?.trim(),
-      phone: phone?.trim(),
-      message: message?.trim(),
+      company: company?.trim() || null,
+      phone: phone?.trim() || null,
+      message: message?.trim() || null,
     });
+
+    if (error) {
+      console.error('Supabase insert error:', error);
+      return json({ error: 'Something went wrong. Please try again.' }, 500);
+    }
 
     return json({ success: true });
   } catch (err) {

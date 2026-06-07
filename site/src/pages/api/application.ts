@@ -1,7 +1,11 @@
 import type { APIRoute } from 'astro';
-import { notifyApplication, generateRefId } from '../../lib/email';
+import { supabase } from '../../lib/supabase';
 
 export const prerender = false;
+
+function generateRefId(): string {
+  return 'ELYA-' + Math.floor(100000 + Math.random() * 900000);
+}
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -44,14 +48,40 @@ export const POST: APIRoute = async ({ request }) => {
 
     const refId = generateRefId();
 
-    await notifyApplication({
+    const { error } = await supabase.from('applications').insert({
       ref_id: refId,
-      legal_name: get('legal_name')!,
-      owner_name: get('owner_name')!,
+      legal_name: get('legal_name'),
+      dba: get('dba'),
+      ein: get('ein'),
+      entity: get('entity'),
+      amount: get('amount'),
+      nature: get('nature'),
+      product: get('product'),
+      ownership_length: get('ownership_length'),
+      incorp_date: get('incorp_date'),
+      biz_street: get('biz_street'),
+      biz_city: get('biz_city'),
+      biz_state: get('biz_state'),
+      biz_zip: get('biz_zip'),
+      use_of_funds: get('use_of_funds'),
+      credit_cards: get('credit_cards'),
+      mca: get('mca'),
+      owner_name: get('owner_name'),
+      ssn: get('ssn'),
+      dob: get('dob'),
+      credit_score: get('credit_score'),
+      home_street: get('home_street'),
+      home_city: get('home_city'),
+      home_state: get('home_state'),
+      home_zip: get('home_zip'),
       email: get('email'),
-      capital_amount: get('amount')!,
-      nature_of_business: get('nature')!,
+      sign_date: get('sign_date'),
     });
+
+    if (error) {
+      console.error('Supabase insert error:', error);
+      return json({ error: 'Something went wrong. Please try again.' }, 500);
+    }
 
     return json({ success: true, ref_id: refId });
   } catch (err) {
