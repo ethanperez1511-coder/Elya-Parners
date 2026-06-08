@@ -1,23 +1,8 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
-const SMTP_USER = import.meta.env.SMTP_USER;
-const SMTP_PASS = import.meta.env.SMTP_PASS;
-const NOTIFY_TO = import.meta.env.NOTIFY_EMAIL || SMTP_USER;
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
+const NOTIFY_TO = import.meta.env.NOTIFY_EMAIL || 'deals@fairmontcp.net';
 
-if (!SMTP_USER || !SMTP_PASS) {
-  console.warn('SMTP credentials not set — email notifications disabled.');
-}
-
-const transporter = SMTP_USER && SMTP_PASS
-  ? nodemailer.createTransport({
-      host: 'smtp.office365.com',
-      port: 587,
-      secure: false,
-      auth: { user: SMTP_USER, pass: SMTP_PASS },
-    })
-  : null;
-
-/** Send inquiry notification */
 export async function notifyInquiry(fields: {
   name: string;
   email: string;
@@ -25,9 +10,8 @@ export async function notifyInquiry(fields: {
   phone?: string | null;
   message?: string | null;
 }) {
-  if (!transporter) return;
-  await transporter.sendMail({
-    from: `"Elya Partners" <${SMTP_USER}>`,
+  await resend.emails.send({
+    from: 'Elya Partners <onboarding@resend.dev>',
     to: NOTIFY_TO,
     subject: `New Inquiry — ${fields.name}`,
     text: [
@@ -40,7 +24,6 @@ export async function notifyInquiry(fields: {
   });
 }
 
-/** Send application notification */
 export async function notifyApplication(fields: {
   ref_id: string;
   legal_name: string;
@@ -49,9 +32,8 @@ export async function notifyApplication(fields: {
   capital_amount: string;
   nature_of_business: string;
 }) {
-  if (!transporter) return;
-  await transporter.sendMail({
-    from: `"Elya Partners" <${SMTP_USER}>`,
+  await resend.emails.send({
+    from: 'Elya Partners <onboarding@resend.dev>',
     to: NOTIFY_TO,
     subject: `New Application ${fields.ref_id} — ${fields.legal_name}`,
     text: [
@@ -63,9 +45,4 @@ export async function notifyApplication(fields: {
       `Nature: ${fields.nature_of_business}`,
     ].filter(Boolean).join('\n'),
   });
-}
-
-/** Generate a reference ID like ELYA-839201 */
-export function generateRefId(): string {
-  return 'ELYA-' + Math.floor(100000 + Math.random() * 900000);
 }

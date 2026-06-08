@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { supabase } from '../../lib/supabase';
+import { notifyInquiry } from '../../lib/email';
 
 export const prerender = false;
 
@@ -26,6 +27,18 @@ export const POST: APIRoute = async ({ request }) => {
     if (error) {
       console.error('Supabase insert error:', error);
       return json({ error: 'Something went wrong. Please try again.' }, 500);
+    }
+
+    try {
+      await notifyInquiry({
+        name: name.trim(),
+        email: email.trim(),
+        company: company?.trim(),
+        phone: phone?.trim(),
+        message: message?.trim(),
+      });
+    } catch (e) {
+      console.error('Email notification failed (data saved):', e);
     }
 
     return json({ success: true });
