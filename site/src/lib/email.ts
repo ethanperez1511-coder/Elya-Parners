@@ -31,6 +31,8 @@ export async function notifyApplication(fields: {
   email?: string | null;
   capital_amount: string;
   nature_of_business: string;
+  signature_url?: string | null;
+  bank_statement_urls?: string[];
 }) {
   await resend.emails.send({
     from: 'Elya Partners <onboarding@resend.dev>',
@@ -43,6 +45,10 @@ export async function notifyApplication(fields: {
       fields.email ? `Email: ${fields.email}` : null,
       `Capital Requested: ${fields.capital_amount}`,
       `Nature: ${fields.nature_of_business}`,
+      fields.signature_url ? `\nSignature: ${fields.signature_url}` : null,
+      fields.bank_statement_urls?.length
+        ? `\nBank Statements:\n${fields.bank_statement_urls.map(u => `  ${u}`).join('\n')}`
+        : null,
     ].filter(Boolean).join('\n'),
   });
 }

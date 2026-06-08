@@ -49,6 +49,42 @@ export const POST: APIRoute = async ({ request }) => {
 
     const refId = generateRefId();
 
+    // Upload signature
+    let signatureUrl: string | null = null;
+    const signatureData = get('signature');
+    if (signatureData?.startsWith('data:image/png;base64,')) {
+      const base64 = signatureData.replace('data:image/png;base64,', '');
+      const buffer = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+      const path = `${refId}/signature.png`;
+      const { error: sigErr } = await supabase.storage
+        .from('uploads')
+        .upload(path, buffer, { contentType: 'image/png' });
+      if (!sigErr) {
+        const { data: urlData } = supabase.storage.from('uploads').getPublicUrl(path);
+        signatureUrl = urlData.publicUrl;
+      } else {
+        console.error('Signature upload error:', sigErr);
+      }
+    }
+
+    // Upload bank statements
+    const bankStatementUrls: string[] = [];
+    const bankFiles = formData.getAll('bank_statements') as File[];
+    for (const file of bankFiles) {
+      if (file.size === 0) continue;
+      const path = `${refId}/bank-statements/${file.name}`;
+      const buffer = new Uint8Array(await file.arrayBuffer());
+      const { error: fileErr } = await supabase.storage
+        .from('uploads')
+        .upload(path, buffer, { contentType: file.type });
+      if (!fileErr) {
+        const { data: urlData } = supabase.storage.from('uploads').getPublicUrl(path);
+        bankStatementUrls.push(urlData.publicUrl);
+      } else {
+        console.error('File upload error:', fileErr);
+      }
+    }
+
     const { error } = await supabase.from('applications').insert({
       ref_id: refId,
       legal_name: get('legal_name'),
@@ -77,6 +113,8 @@ export const POST: APIRoute = async ({ request }) => {
       home_zip: get('home_zip'),
       email: get('email'),
       sign_date: get('sign_date'),
+      signature_url: signatureUrl,
+      bank_statement_urls: bankStatementUrls,
     });
 
     if (error) {
@@ -92,6 +130,8 @@ export const POST: APIRoute = async ({ request }) => {
         email: get('email'),
         capital_amount: get('amount')!,
         nature_of_business: get('nature')!,
+        signature_url: signatureUrl,
+        bank_statement_urls: bankStatementUrls,
       });
     } catch (e) {
       console.error('Email notification failed (data saved):', e);
