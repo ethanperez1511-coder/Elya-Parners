@@ -23,23 +23,23 @@ import Footer from '../components/Footer.astro';
       <section class="fsec" id="sec-business">
         <div class="fsec-head"><span class="no">01</span><h2>Business Information</h2><span class="ct">Required unless noted</span></div>
         <div class="grid">
-          <div class="field col-2"><label>Business Legal Name <span class="req">*</span></label><input type="text" name="legal_name" placeholder="Acme Holdings, LLC" required /></div>
-          <div class="field"><label>Business DBA</label><input type="text" name="dba" placeholder="Acme" /></div>
-          <div class="field"><label>Tax ID / EIN <span class="req">*</span></label><input type="text" name="ein" placeholder="00-0000000" required /></div>
+          <div class="field col-2"><label>Business Legal Name <span class="req">*</span></label><input type="text" name="legal_name" placeholder="Acme Holdings, LLC" maxlength="100" required /></div>
+          <div class="field"><label>Business DBA</label><input type="text" name="dba" placeholder="Acme" maxlength="100" /></div>
+          <div class="field"><label>Tax ID / EIN <span class="req">*</span></label><input type="text" name="ein" placeholder="00-0000000" maxlength="10" required /></div>
           <div class="field"><label>Entity Type <span class="req">*</span></label>
             <select name="entity" required><option value="" disabled selected>Select entity type</option><option>LLC</option><option>Corporation</option><option>Sole Proprietorship</option><option>Partnership</option><option>Other</option></select>
           </div>
-          <div class="field"><label>Capital You're Looking For <span class="req">*</span></label><input type="text" name="amount" placeholder="$250,000" required /></div>
-          <div class="field"><label>Nature of Business <span class="req">*</span></label><input type="text" name="nature" placeholder="Wholesale distribution" required /></div>
-          <div class="field"><label>Product / Service Offered</label><input type="text" name="product" placeholder="What you sell" /></div>
-          <div class="field"><label>Length of Ownership</label><input type="text" name="ownership_length" placeholder="e.g. 6 years" /></div>
+          <div class="field"><label>Capital You're Looking For <span class="req">*</span></label><input type="text" name="amount" placeholder="$250,000" maxlength="20" required /></div>
+          <div class="field"><label>Nature of Business <span class="req">*</span></label><input type="text" name="nature" placeholder="Wholesale distribution" maxlength="100" required /></div>
+          <div class="field"><label>Product / Service Offered</label><input type="text" name="product" placeholder="What you sell" maxlength="100" /></div>
+          <div class="field"><label>Length of Ownership</label><input type="text" name="ownership_length" placeholder="e.g. 6 years" maxlength="30" /></div>
           <div class="field"><label>Date of Incorporation</label><input type="date" name="incorp_date" /></div>
           <div class="field col-2"><label>Business Street Address <span class="req">*</span></label><input type="text" name="biz_street" placeholder="66 W Flagler St" required /></div>
           <div class="field"><label>City <span class="req">*</span></label><input type="text" name="biz_city" placeholder="New York" required /></div>
           <div class="grid-3 col-2" style="grid-column:1/-1">
-            <div class="field"><label>Use of Funds <span class="req">*</span></label><input type="text" name="use_of_funds" placeholder="Expansion, inventory, payroll…" required /></div>
-            <div class="field"><label>State <span class="req">*</span></label><input type="text" name="biz_state" placeholder="NY" required /></div>
-            <div class="field"><label>Zip Code <span class="req">*</span></label><input type="text" name="biz_zip" placeholder="10013" required /></div>
+            <div class="field"><label>Use of Funds <span class="req">*</span></label><input type="text" name="use_of_funds" placeholder="Expansion, inventory, payroll…" maxlength="200" required /></div>
+            <div class="field"><label>State <span class="req">*</span></label><input type="text" name="biz_state" placeholder="NY" maxlength="2" required /></div>
+            <div class="field"><label>Zip Code <span class="req">*</span></label><input type="text" name="biz_zip" placeholder="10013" maxlength="10" required /></div>
           </div>
           <div class="field"><label>Do You Accept Credit Cards?</label>
             <div class="seg"><input type="radio" id="cc-y" name="credit_cards" value="yes"><label for="cc-y">Yes</label><input type="radio" id="cc-n" name="credit_cards" value="no"><label for="cc-n">No</label></div>
@@ -54,8 +54,8 @@ import Footer from '../components/Footer.astro';
       <section class="fsec" id="sec-owner">
         <div class="fsec-head"><span class="no">02</span><h2>Business Owner Information</h2></div>
         <div class="grid">
-          <div class="field"><label>Full Name <span class="req">*</span></label><input type="text" name="owner_name" placeholder="Jane Doe" required /></div>
-          <div class="field"><label>Social Security Number <span class="req">*</span></label><input type="text" name="ssn" placeholder="•••-••-••••" autocomplete="off" required /></div>
+          <div class="field"><label>Full Name <span class="req">*</span></label><input type="text" name="owner_name" placeholder="Jane Doe" maxlength="100" required /></div>
+          <div class="field"><label>Social Security Number <span class="req">*</span></label><input type="text" name="ssn" placeholder="•••-••-••••" maxlength="11" autocomplete="off" required /></div>
           <div class="field"><label>Date of Birth <span class="req">*</span></label><input type="date" name="dob" required /></div>
           <div class="field"><label>Credit Score <span class="req">*</span></label>
             <select name="credit_score" required><option value="" disabled selected>Select range</option><option>500–550</option><option>550–600</option><option>600–650</option><option>650–700</option><option>700–750</option><option>750–800</option><option>800+</option></select>
@@ -63,8 +63,8 @@ import Footer from '../components/Footer.astro';
           <div class="field col-2"><label>Home Street Address <span class="req">*</span></label><input type="text" name="home_street" placeholder="Street address" required /></div>
           <div class="grid-3 col-2" style="grid-column:1/-1">
             <div class="field"><label>City <span class="req">*</span></label><input type="text" name="home_city" placeholder="City" required /></div>
-            <div class="field"><label>State <span class="req">*</span></label><input type="text" name="home_state" placeholder="State" required /></div>
-            <div class="field"><label>Zip Code <span class="req">*</span></label><input type="text" name="home_zip" placeholder="Zip" required /></div>
+            <div class="field"><label>State <span class="req">*</span></label><input type="text" name="home_state" placeholder="State" maxlength="2" required /></div>
+            <div class="field"><label>Zip Code <span class="req">*</span></label><input type="text" name="home_zip" placeholder="Zip" maxlength="10" required /></div>
           </div>
         </div>
       </section>
