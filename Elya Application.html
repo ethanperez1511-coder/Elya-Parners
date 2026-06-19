@@ -243,110 +243,24 @@ form{display:flex;flex-direction:column;gap:clamp(3rem,5vw,4.5rem)}
 
   <!-- FORM -->
   <div>
-    <form id="appForm" novalidate>
-      <!-- 01 BUSINESS -->
-      <section class="fsec rv in" id="sec-business">
-        <div class="fsec-head"><span class="no">01</span><h2>Business Information</h2><span class="ct">Required unless noted</span></div>
-        <div class="grid">
-          <div class="field col-2"><label>Business Legal Name <span class="req">*</span></label><input type="text" name="legal_name" placeholder="Acme Holdings, LLC" required /></div>
-          <div class="field"><label>Business DBA</label><input type="text" name="dba" placeholder="Acme" /></div>
-          <div class="field"><label>Tax ID / EIN <span class="req">*</span></label><input type="text" name="ein" placeholder="00-0000000" required /></div>
-          <div class="field"><label>Entity Type <span class="req">*</span></label>
-            <select name="entity" required><option value="" disabled selected>Select entity type</option><option>LLC</option><option>Corporation</option><option>Sole Proprietorship</option><option>Partnership</option><option>Other</option></select>
-          </div>
-          <div class="field"><label>Capital You're Looking For <span class="req">*</span></label><input type="text" name="amount" placeholder="$250,000" required /></div>
-          <div class="field"><label>Nature of Business <span class="req">*</span></label><input type="text" name="nature" placeholder="Wholesale distribution" required /></div>
-          <div class="field"><label>Product / Service Offered</label><input type="text" name="product" placeholder="What you sell" /></div>
-          <div class="field"><label>Length of Ownership</label><input type="text" name="ownership_length" placeholder="e.g. 6 years" /></div>
-          <div class="field"><label>Date of Incorporation</label><input type="date" name="incorp_date" /></div>
-          <div class="field col-2"><label>Business Street Address <span class="req">*</span></label><input type="text" name="biz_street" placeholder="120 Hudson Street, Suite 900" required /></div>
-          <div class="field"><label>City <span class="req">*</span></label><input type="text" name="biz_city" placeholder="New York" required /></div>
-          <div class="grid-3 col-2" style="grid-column:1/-1">
-            <div class="field"><label>Use of Funds <span class="req">*</span></label><input type="text" name="use_of_funds" placeholder="Expansion, inventory, payroll…" required /></div>
-            <div class="field"><label>State <span class="req">*</span></label><input type="text" name="biz_state" placeholder="NY" required /></div>
-            <div class="field"><label>Zip Code <span class="req">*</span></label><input type="text" name="biz_zip" placeholder="10013" required /></div>
-          </div>
-          <div class="field"><label>Do You Accept Credit Cards?</label>
-            <div class="seg"><input type="radio" id="cc-y" name="credit_cards" value="yes"><label for="cc-y">Yes</label><input type="radio" id="cc-n" name="credit_cards" value="no"><label for="cc-n">No</label></div>
-          </div>
-          <div class="field"><label>Open MCA Positions?</label>
-            <div class="seg"><input type="radio" id="mca-y" name="mca" value="yes"><label for="mca-y">Yes</label><input type="radio" id="mca-n" name="mca" value="no"><label for="mca-n">No</label></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 02 OWNER -->
-      <section class="fsec rv" id="sec-owner">
-        <div class="fsec-head"><span class="no">02</span><h2>Business Owner Information</h2></div>
-        <div class="grid">
-          <div class="field"><label>Full Name <span class="req">*</span></label><input type="text" name="owner_name" placeholder="Jane Doe" required /></div>
-          <div class="field"><label>Social Security Number <span class="req">*</span></label><input type="text" name="ssn" placeholder="•••-••-••••" autocomplete="off" required /></div>
-          <div class="field"><label>Date of Birth <span class="req">*</span></label><input type="date" name="dob" required /></div>
-          <div class="field"><label>Credit Score <span class="req">*</span></label>
-            <select name="credit_score" required><option value="" disabled selected>Select range</option><option>500–550</option><option>550–600</option><option>600–650</option><option>650–700</option><option>700–750</option><option>750–800</option><option>800+</option></select>
-          </div>
-          <div class="field col-2"><label>Home Street Address <span class="req">*</span></label><input type="text" name="home_street" placeholder="Street address" required /></div>
-          <div class="grid-3 col-2" style="grid-column:1/-1">
-            <div class="field"><label>City <span class="req">*</span></label><input type="text" name="home_city" placeholder="City" required /></div>
-            <div class="field"><label>State <span class="req">*</span></label><input type="text" name="home_state" placeholder="State" required /></div>
-            <div class="field"><label>Zip Code <span class="req">*</span></label><input type="text" name="home_zip" placeholder="Zip" required /></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 03 BANK -->
-      <section class="fsec rv" id="sec-bank">
-        <div class="fsec-head"><span class="no">03</span><h2>Bank Statements</h2><span class="ct">PDF · JPG · PNG — max 10MB each</span></div>
-        <p style="color:var(--ink-60);max-width:54ch;margin-bottom:1.4rem">Upload three to six months of business bank statements. This helps us understand your cash cycle and structure terms that fit.</p>
-        <div class="dropzone" id="dropzone">
-          <div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 13V3M6 6.5L10 2.5l4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 13v3a1 1 0 001 1h12a1 1 0 001-1v-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
-          <div class="big">Drag &amp; drop files here</div>
-          <div class="small">or <span class="browse">browse your device</span> · PDF, JPG, PNG — max 10MB each</div>
-          <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png" hidden />
-        </div>
-        <div class="filelist" id="fileList"></div>
-      </section>
-
-      <!-- 04 TERMS -->
-      <section class="fsec rv" id="sec-terms">
-        <div class="fsec-head"><span class="no">04</span><h2>Terms &amp; Signature</h2></div>
-        <div class="terms-box" tabindex="0">
-          <h4>Authorization &amp; Consent</h4>
-          <p>By signing below, the business and the business owner or officer named above (together, "you") authorize Elya Partners and its representatives, successors, and assigns to obtain business, personal, and investigative credit reports and related information about you from one or more consumer reporting agencies and other third parties in connection with this application and any financing it may lead to.</p>
-          <p>You authorize Elya Partners to share this application and the information gathered with funding partners and service providers solely for the purpose of evaluating and, where appropriate, extending financing. You confirm that the information you have provided is true and complete to the best of your knowledge.</p>
-          <p>You consent to be contacted by Elya Partners by phone, text, or email at the contact details provided. This authorization remains in effect for as long as needed to evaluate and service any resulting financing, and may be revoked in writing at any time, except where action has already been taken in reliance on it.</p>
-        </div>
-        <label class="agree"><input type="checkbox" id="agree" required><span class="box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>I have read and agree to the authorization and consent stated above.</span></label>
-
-        <div class="sig-grid">
-          <div class="sig-wrap">
-            <label style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-60);font-weight:500">Digital Signature <span style="color:var(--gold-deep)">*</span></label>
-            <div class="sig-pad" id="sigPad">
-              <canvas id="sigCanvas"></canvas>
-              <div class="line"></div><div class="x">✕</div>
-              <div class="ph" id="sigPh">Sign here</div>
-            </div>
-            <button type="button" class="sig-clear" id="sigClear">Clear signature</button>
-          </div>
-          <div class="field" style="align-self:flex-start">
-            <label>Date <span class="req">*</span></label>
-            <input type="date" name="sign_date" id="signDate" required />
-          </div>
-        </div>
-
-        <div class="submit-bar">
-          <p class="note"><span class="pulse"></span>We'll respond within one business day.</p>
-          <button class="btn" type="submit"><span id="submitLabel">Submit Application</span></button>
-        </div>
-      </section>
-    </form>
-
-    <!-- SUCCESS -->
-    <div class="success" id="success">
-      <div class="seal"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path d="M10 17.5l4.5 4.5L24 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <h2>Application received. Thank you for considering <em>Elya.</em></h2>
-      <p>A member of our team is reviewing your inquiry and will be in touch within one business day to discuss next steps.</p>
-      <div class="ref">Reference <b id="refNo">ELYA-000000</b></div>
+    <div class="ghl-embed">
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/WaAHXYOWZ2mStwZwRhhY"
+        style="width:100%;height:3082px;border:none;border-radius:2px"
+        id="inline-WaAHXYOWZ2mStwZwRhhY"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="MCA Apply Now - Elya"
+        data-height="3082"
+        data-layout-iframe-id="inline-WaAHXYOWZ2mStwZwRhhY"
+        data-form-id="WaAHXYOWZ2mStwZwRhhY"
+        title="MCA Apply Now - Elya"
+      ></iframe>
     </div>
   </div>
 </div>
@@ -360,105 +274,11 @@ form{display:flex;flex-direction:column;gap:clamp(3rem,5vw,4.5rem)}
 
 <script>
 (function(){
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* default date = today */
-  var today = new Date().toISOString().slice(0,10);
-  var sd = document.getElementById('signDate'); if(sd) sd.value = today;
-
-  /* reveal */
+  /* scroll reveal */
   var io = new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
   document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
-
-  /* rail active section */
-  var links = [].slice.call(document.querySelectorAll('#railNav a'));
-  var secs = links.map(function(a){return document.querySelector(a.getAttribute('href'));});
-  var spy = new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if(e.isIntersecting){
-        var i = secs.indexOf(e.target);
-        links.forEach(function(l){l.classList.remove('active');});
-        if(links[i]) links[i].classList.add('active');
-      }
-    });
-  },{rootMargin:'-30% 0px -60% 0px',threshold:0});
-  secs.forEach(function(s){if(s) spy.observe(s);});
-
-  /* file upload */
-  var dz = document.getElementById('dropzone');
-  var fi = document.getElementById('fileInput');
-  var fl = document.getElementById('fileList');
-  var files = [];
-  function fmt(b){return b<1024?b+' B':b<1048576?(b/1024).toFixed(0)+' KB':(b/1048576).toFixed(1)+' MB';}
-  function render(){
-    fl.innerHTML='';
-    files.forEach(function(f,idx){
-      var d=document.createElement('div');d.className='file';
-      d.innerHTML='<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 1.5h5L13 5v9.5a.5.5 0 01-.5.5h-9A.5.5 0 013 14.5v-12A.5.5 0 013.5 1.5z" stroke="%23A6863F" stroke-width="1"/><path d="M9 1.5V5h4" stroke="%23A6863F" stroke-width="1"/></svg><span class="nm">'+f.name+'</span><span class="sz">'+fmt(f.size)+'</span><button type="button" class="x" data-i="'+idx+'">×</button>';
-      fl.appendChild(d);
-    });
-    fl.querySelectorAll('.x').forEach(function(b){b.addEventListener('click',function(){files.splice(+b.dataset.i,1);render();});});
-  }
-  function add(list){[].slice.call(list).forEach(function(f){files.push(f);});render();}
-  dz.addEventListener('click',function(){fi.click();});
-  fi.addEventListener('change',function(){add(fi.files);fi.value='';});
-  ['dragenter','dragover'].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.add('drag');});});
-  ['dragleave','drop'].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.remove('drag');});});
-  dz.addEventListener('drop',function(e){if(e.dataTransfer&&e.dataTransfer.files)add(e.dataTransfer.files);});
-
-  /* signature pad */
-  var pad=document.getElementById('sigPad');
-  var canvas=document.getElementById('sigCanvas');
-  var ph=document.getElementById('sigPh');
-  var ctx=canvas.getContext('2d');
-  var drawing=false,hasInk=false,last=null;
-  function resize(){
-    var r=pad.getBoundingClientRect();var dpr=window.devicePixelRatio||1;
-    var img = hasInk ? canvas.toDataURL() : null;
-    canvas.width=r.width*dpr;canvas.height=r.height*dpr;
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    ctx.lineWidth=1.8;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#0B1A2B';
-    if(img){var im=new Image();im.onload=function(){ctx.drawImage(im,0,0,r.width,r.height);};im.src=img;}
-  }
-  setTimeout(resize,60);window.addEventListener('resize',resize);
-  function pos(e){var r=canvas.getBoundingClientRect();var t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top};}
-  function start(e){drawing=true;last=pos(e);if(!hasInk){hasInk=true;ph.style.opacity='0';}e.preventDefault();}
-  function move(e){if(!drawing)return;var p=pos(e);ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke();last=p;e.preventDefault();}
-  function end(){drawing=false;}
-  pad.addEventListener('mousedown',start);window.addEventListener('mousemove',move);window.addEventListener('mouseup',end);
-  pad.addEventListener('touchstart',start,{passive:false});pad.addEventListener('touchmove',move,{passive:false});pad.addEventListener('touchend',end);
-  document.getElementById('sigClear').addEventListener('click',function(){ctx.clearRect(0,0,canvas.width,canvas.height);hasInk=false;ph.style.opacity='1';});
-
-  /* submit */
-  var form=document.getElementById('appForm');
-  var label=document.getElementById('submitLabel');
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var firstInvalid=null;
-    form.querySelectorAll('[required]').forEach(function(el){
-      var bad = el.type==='checkbox' ? !el.checked : !String(el.value).trim();
-      if(bad && !firstInvalid){firstInvalid=el;}
-      if(bad && (el.tagName==='INPUT'||el.tagName==='SELECT'||el.tagName==='TEXTAREA')){el.style.borderColor='#b5503a';}
-      else if(el.style){el.style.borderColor='';}
-    });
-    if(!hasInk && !firstInvalid){firstInvalid=document.getElementById('sigPad');}
-    if(firstInvalid){
-      label.textContent='Complete required fields';
-      var top=firstInvalid.getBoundingClientRect().top+window.scrollY-120;
-      window.scrollTo({top:top,behavior:reduce?'auto':'smooth'});
-      setTimeout(function(){label.textContent='Submit Application';},2200);
-      return;
-    }
-    label.textContent='Submitting…';
-    setTimeout(function(){
-      form.style.display='none';
-      var s=document.getElementById('success');s.classList.add('show');
-      document.getElementById('refNo').textContent='ELYA-'+Math.floor(100000+Math.random()*900000);
-      var top=s.getBoundingClientRect().top+window.scrollY-160;
-      window.scrollTo({top:top,behavior:reduce?'auto':'smooth'});
-    },900);
-  });
 })();
 </script>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </body>
 </html>
