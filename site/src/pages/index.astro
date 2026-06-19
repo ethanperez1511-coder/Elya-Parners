@@ -146,23 +146,25 @@ import Footer from '../components/Footer.astro';
             <div class="step"><span class="sn">04</span><div><div class="st">Funded</div><div class="sd">Capital deployed, often within days of agreement.</div></div></div>
           </div>
         </div>
-        <form class="form reveal d2" id="inquiryForm" novalidate>
-          <div class="form-row">
-            <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" placeholder="Jane Doe" required /></div>
-            <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" type="text" placeholder="Acme Holdings" /></div>
-          </div>
-          <div class="form-row">
-            <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="jane@acme.com" required /></div>
-            <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" placeholder="+1 (555) 000-0000" /></div>
-          </div>
-          <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" placeholder="What are you looking to finance?"></textarea></div>
-          <div class="form-foot">
-            <p class="note"><span class="pulse"></span>We'll respond within one business day.</p>
-            <button class="btn" type="submit"><span id="formBtnLabel">Send Inquiry</span></button>
-          </div>
-          <p class="form-success" id="formSuccess" style="display:none">Thank you — we'll be in touch within one business day.</p>
-          <p class="form-error" id="formError" style="display:none"></p>
-        </form>
+        <div class="form reveal d2 ghl-embed">
+          <iframe
+            src="https://api.leadconnectorhq.com/widget/form/ZWwCqM1kfJhln7QUZAeQ"
+            style="width:100%;height:850px;border:none;border-radius:2px"
+            id="inline-ZWwCqM1kfJhln7QUZAeQ"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="MCA Contact - Elya"
+            data-height="850"
+            data-layout-iframe-id="inline-ZWwCqM1kfJhln7QUZAeQ"
+            data-form-id="ZWwCqM1kfJhln7QUZAeQ"
+            title="MCA Contact - Elya"
+          ></iframe>
+        </div>
       </div>
     </div>
   </section>
@@ -513,52 +515,7 @@ import Footer from '../components/Footer.astro';
     closeBtn?.addEventListener('click', closeMenu);
     menu?.querySelectorAll('[data-close]').forEach((a) => a.addEventListener('click', closeMenu));
 
-    // Inquiry form submission
-    const inquiryForm = document.getElementById('inquiryForm') as HTMLFormElement | null;
-    inquiryForm?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formEl = e.target as HTMLFormElement;
-      const btn = formEl.querySelector('.btn') as HTMLButtonElement;
-      const label = document.getElementById('formBtnLabel')!;
-      const successEl = document.getElementById('formSuccess')!;
-      const errorEl = document.getElementById('formError')!;
-
-      // Clear previous state
-      formEl.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
-      successEl.style.display = 'none';
-      errorEl.style.display = 'none';
-
-      // Validate
-      const name = (formEl.querySelector('[name="name"]') as HTMLInputElement).value.trim();
-      const email = (formEl.querySelector('[name="email"]') as HTMLInputElement).value.trim();
-      let valid = true;
-      if (!name) { formEl.querySelector('[name="name"]')!.classList.add('invalid'); valid = false; }
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { formEl.querySelector('[name="email"]')!.classList.add('invalid'); valid = false; }
-      if (!valid) return;
-
-      const data = Object.fromEntries(new FormData(formEl));
-
-      label.textContent = 'Sending…';
-      btn.disabled = true;
-
-      try {
-        const res = await fetch('/api/inquiry', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-        const json = await res.json();
-        if (!res.ok) throw new Error(json.error || 'Something went wrong.');
-        formEl.reset();
-        successEl.style.display = 'block';
-      } catch (err: any) {
-        errorEl.textContent = err.message || 'Something went wrong. Please try again.';
-        errorEl.style.display = 'block';
-      } finally {
-        label.textContent = 'Send Inquiry';
-        btn.disabled = false;
-      }
-    });
-
   })();
 </script>
+
+<script is:inline src="https://link.msgsndr.com/js/form_embed.js"></script>

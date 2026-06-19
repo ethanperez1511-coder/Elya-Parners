@@ -18,110 +18,24 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <div class="shell" id="formShell">
-    <form id="appForm" novalidate>
-      <!-- 01 BUSINESS -->
-      <section class="fsec" id="sec-business">
-        <div class="fsec-head"><span class="no">01</span><h2>Business Information</h2><span class="ct">Required unless noted</span></div>
-        <div class="grid">
-          <div class="field col-2"><label>Business Legal Name <span class="req">*</span></label><input type="text" name="legal_name" placeholder="Acme Holdings, LLC" maxlength="100" required /></div>
-          <div class="field"><label>Business DBA</label><input type="text" name="dba" placeholder="Acme" maxlength="100" /></div>
-          <div class="field"><label>Tax ID / EIN <span class="req">*</span></label><input type="text" name="ein" placeholder="00-0000000" maxlength="10" required /></div>
-          <div class="field"><label>Entity Type <span class="req">*</span></label>
-            <select name="entity" required><option value="" disabled selected>Select entity type</option><option>LLC</option><option>Corporation</option><option>Sole Proprietorship</option><option>Partnership</option><option>Other</option></select>
-          </div>
-          <div class="field"><label>Capital You're Looking For <span class="req">*</span></label><input type="text" name="amount" placeholder="$250,000" maxlength="20" required /></div>
-          <div class="field"><label>Nature of Business <span class="req">*</span></label><input type="text" name="nature" placeholder="Wholesale distribution" maxlength="100" required /></div>
-          <div class="field"><label>Product / Service Offered</label><input type="text" name="product" placeholder="What you sell" maxlength="100" /></div>
-          <div class="field"><label>Length of Ownership</label><input type="text" name="ownership_length" placeholder="e.g. 6 years" maxlength="30" /></div>
-          <div class="field"><label>Date of Incorporation</label><input type="date" name="incorp_date" /></div>
-          <div class="field col-2"><label>Business Street Address <span class="req">*</span></label><input type="text" name="biz_street" placeholder="66 W Flagler St" required /></div>
-          <div class="field"><label>City <span class="req">*</span></label><input type="text" name="biz_city" placeholder="New York" required /></div>
-          <div class="grid-3 col-2" style="grid-column:1/-1">
-            <div class="field"><label>Use of Funds <span class="req">*</span></label><input type="text" name="use_of_funds" placeholder="Expansion, inventory, payroll…" maxlength="200" required /></div>
-            <div class="field"><label>State <span class="req">*</span></label><input type="text" name="biz_state" placeholder="NY" maxlength="2" required /></div>
-            <div class="field"><label>Zip Code <span class="req">*</span></label><input type="text" name="biz_zip" placeholder="10013" maxlength="10" required /></div>
-          </div>
-          <div class="field"><label>Do You Accept Credit Cards?</label>
-            <div class="seg"><input type="radio" id="cc-y" name="credit_cards" value="yes"><label for="cc-y">Yes</label><input type="radio" id="cc-n" name="credit_cards" value="no"><label for="cc-n">No</label></div>
-          </div>
-          <div class="field"><label>Open MCA Positions?</label>
-            <div class="seg"><input type="radio" id="mca-y" name="mca" value="yes"><label for="mca-y">Yes</label><input type="radio" id="mca-n" name="mca" value="no"><label for="mca-n">No</label></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 02 OWNER -->
-      <section class="fsec" id="sec-owner">
-        <div class="fsec-head"><span class="no">02</span><h2>Business Owner Information</h2></div>
-        <div class="grid">
-          <div class="field"><label>Full Name <span class="req">*</span></label><input type="text" name="owner_name" placeholder="Jane Doe" maxlength="100" required /></div>
-          <div class="field"><label>Social Security Number <span class="req">*</span></label><input type="text" name="ssn" placeholder="•••-••-••••" maxlength="11" autocomplete="off" required /></div>
-          <div class="field"><label>Date of Birth <span class="req">*</span></label><input type="date" name="dob" required /></div>
-          <div class="field"><label>Credit Score <span class="req">*</span></label>
-            <select name="credit_score" required><option value="" disabled selected>Select range</option><option>500–550</option><option>550–600</option><option>600–650</option><option>650–700</option><option>700–750</option><option>750–800</option><option>800+</option></select>
-          </div>
-          <div class="field col-2"><label>Home Street Address <span class="req">*</span></label><input type="text" name="home_street" placeholder="Street address" required /></div>
-          <div class="grid-3 col-2" style="grid-column:1/-1">
-            <div class="field"><label>City <span class="req">*</span></label><input type="text" name="home_city" placeholder="City" required /></div>
-            <div class="field"><label>State <span class="req">*</span></label><input type="text" name="home_state" placeholder="State" maxlength="2" required /></div>
-            <div class="field"><label>Zip Code <span class="req">*</span></label><input type="text" name="home_zip" placeholder="Zip" maxlength="10" required /></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 03 BANK STATEMENTS -->
-      <section class="fsec" id="sec-bank">
-        <div class="fsec-head"><span class="no">03</span><h2>Bank Statements</h2><span class="ct">PDF · JPG · PNG — max 10MB each</span></div>
-        <p style="color:var(--ink-60);max-width:54ch;margin-bottom:1.4rem">Upload three to six months of business bank statements. This helps us understand your cash cycle and structure terms that fit.</p>
-        <div class="dropzone" id="dropzone">
-          <div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 13V3M6 6.5L10 2.5l4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 13v3a1 1 0 001 1h12a1 1 0 001-1v-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
-          <div class="big">Drag & drop files here</div>
-          <div class="small">or <span class="browse">browse your device</span> · PDF, JPG, PNG — max 10MB each</div>
-          <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png" hidden />
-        </div>
-        <div class="filelist" id="fileList"></div>
-      </section>
-
-      <!-- 04 TERMS & SIGNATURE -->
-      <section class="fsec" id="sec-terms">
-        <div class="fsec-head"><span class="no">04</span><h2>Terms & Signature</h2></div>
-        <div class="terms-box" tabindex="0">
-          <h4>Authorization & Consent</h4>
-          <p>By signing below, the business and the business owner or officer named above (together, "you") authorize Elya Partners and its representatives, successors, and assigns to obtain business, personal, and investigative credit reports and related information about you from one or more consumer reporting agencies and other third parties in connection with this application and any financing it may lead to.</p>
-          <p>You authorize Elya Partners to share this application and the information gathered with funding partners and service providers solely for the purpose of evaluating and, where appropriate, extending financing. You confirm that the information you have provided is true and complete to the best of your knowledge.</p>
-          <p>You consent to be contacted by Elya Partners by phone, text, or email at the contact details provided. This authorization remains in effect for as long as needed to evaluate and service any resulting financing, and may be revoked in writing at any time, except where action has already been taken in reliance on it.</p>
-        </div>
-        <label class="agree"><input type="checkbox" id="agree" name="agree" required><span class="box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.2l2.6 2.6L10 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>I have read and agree to the authorization and consent stated above.</span></label>
-
-        <div class="sig-grid">
-          <div class="sig-wrap">
-            <label style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-60);font-weight:500">Digital Signature <span style="color:var(--gold-deep)">*</span></label>
-            <div class="sig-pad" id="sigPad">
-              <canvas id="sigCanvas"></canvas>
-              <div class="line"></div><div class="x">✕</div>
-              <div class="ph" id="sigPh">Sign here</div>
-            </div>
-            <button type="button" class="sig-clear" id="sigClear">Clear signature</button>
-          </div>
-          <div class="field" style="align-self:flex-start">
-            <label>Date <span class="req">*</span></label>
-            <input type="date" name="sign_date" id="signDate" required />
-          </div>
-        </div>
-
-        <div class="submit-bar">
-          <p class="note"><span class="pulse"></span>We'll respond within one business day.</p>
-          <button class="btn" type="submit"><span id="submitLabel">Submit Application</span></button>
-        </div>
-      </section>
-    </form>
-
-    <!-- Success -->
-    <div class="success" id="appSuccess">
-      <div class="seal"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><path d="M10 18.5l5.5 5.5L26 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <h2>Application <em>submitted.</em></h2>
-      <p>A member of our team will review your information and respond within one business day.</p>
-      <p class="ref">Reference <b id="refId"></b></p>
+    <div class="ghl-embed">
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/WaAHXYOWZ2mStwZwRhhY"
+        style="width:100%;height:3082px;border:none;border-radius:2px"
+        id="inline-WaAHXYOWZ2mStwZwRhhY"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="MCA Apply Now - Elya"
+        data-height="3082"
+        data-layout-iframe-id="inline-WaAHXYOWZ2mStwZwRhhY"
+        data-form-id="WaAHXYOWZ2mStwZwRhhY"
+        title="MCA Apply Now - Elya"
+      ></iframe>
     </div>
   </div>
 
@@ -251,158 +165,4 @@ import Footer from '../components/Footer.astro';
   }
 </style>
 
-<script>
-(function(){
-  const form = document.getElementById('appForm') as HTMLFormElement;
-  const successEl = document.getElementById('appSuccess')!;
-  const submitLabel = document.getElementById('submitLabel')!;
-
-  // Auto-fill today's date
-  const signDate = document.getElementById('signDate') as HTMLInputElement;
-  if (signDate && !signDate.value) {
-    signDate.value = new Date().toISOString().slice(0, 10);
-  }
-
-  // --- Signature pad ---
-  const canvas = document.getElementById('sigCanvas') as HTMLCanvasElement;
-  const ph = document.getElementById('sigPh')!;
-  const ctx = canvas.getContext('2d')!;
-  let drawing = false;
-  let hasSig = false;
-
-  function resizeCanvas() {
-    const r = canvas.parentElement!.getBoundingClientRect();
-    canvas.width = r.width;
-    canvas.height = r.height;
-    ctx.strokeStyle = '#0B1A2B';
-    ctx.lineWidth = 2;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-  }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-
-  function getPos(e: MouseEvent | TouchEvent) {
-    const r = canvas.getBoundingClientRect();
-    const t = 'touches' in e ? e.touches[0] : e;
-    return { x: t.clientX - r.left, y: t.clientY - r.top };
-  }
-
-  canvas.addEventListener('mousedown', (e) => { drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
-  canvas.addEventListener('mousemove', (e) => { if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); hasSig = true; ph.style.opacity = '0'; });
-  canvas.addEventListener('mouseup', () => { drawing = false; });
-  canvas.addEventListener('mouseleave', () => { drawing = false; });
-
-  canvas.addEventListener('touchstart', (e) => { e.preventDefault(); drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); }, { passive: false });
-  canvas.addEventListener('touchmove', (e) => { e.preventDefault(); if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); hasSig = true; ph.style.opacity = '0'; }, { passive: false });
-  canvas.addEventListener('touchend', () => { drawing = false; });
-
-  document.getElementById('sigClear')?.addEventListener('click', () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    hasSig = false;
-    ph.style.opacity = '1';
-  });
-
-  // --- File upload ---
-  const dropzone = document.getElementById('dropzone')!;
-  const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-  const fileList = document.getElementById('fileList')!;
-  let files: File[] = [];
-
-  dropzone.addEventListener('click', () => fileInput.click());
-  dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('drag'); });
-  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag'));
-  dropzone.addEventListener('drop', (e) => {
-    e.preventDefault(); dropzone.classList.remove('drag');
-    addFiles(Array.from(e.dataTransfer?.files || []));
-  });
-  fileInput.addEventListener('change', () => { addFiles(Array.from(fileInput.files || [])); fileInput.value = ''; });
-
-  function addFiles(newFiles: File[]) {
-    const allowed = ['application/pdf', 'image/jpeg', 'image/png'];
-    for (const f of newFiles) {
-      if (!allowed.includes(f.type)) continue;
-      if (f.size > 10 * 1024 * 1024) continue;
-      files.push(f);
-    }
-    renderFiles();
-  }
-
-  function renderFiles() {
-    fileList.innerHTML = files.map((f, i) => `
-      <div class="file">
-        <span class="nm">${f.name}</span>
-        <span class="sz">${(f.size / 1024 / 1024).toFixed(1)} MB</span>
-        <button type="button" class="x" data-i="${i}">&times;</button>
-      </div>
-    `).join('');
-    fileList.querySelectorAll('.x').forEach(btn => {
-      btn.addEventListener('click', () => {
-        files.splice(parseInt((btn as HTMLElement).dataset.i!), 1);
-        renderFiles();
-      });
-    });
-  }
-
-  // --- Form submission ---
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    // Validate required fields
-    let valid = true;
-    form.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
-
-    form.querySelectorAll('[required]').forEach(el => {
-      const input = el as HTMLInputElement | HTMLSelectElement;
-      if (input.type === 'checkbox' && !(input as HTMLInputElement).checked) {
-        valid = false;
-      } else if (!input.value?.trim()) {
-        input.classList.add('invalid');
-        valid = false;
-      }
-    });
-
-    if (!hasSig) {
-      document.getElementById('sigPad')!.style.borderColor = '#b5503a';
-      valid = false;
-    }
-
-    if (!valid) {
-      const first = form.querySelector('.invalid, [style*="b5503a"]');
-      first?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
-
-    submitLabel.textContent = 'Submitting…';
-    (form.querySelector('.btn') as HTMLButtonElement).disabled = true;
-
-    const formData = new FormData(form);
-
-    // Add signature as base64
-    formData.set('signature', canvas.toDataURL('image/png'));
-
-    // Add bank statement files
-    for (const f of files) {
-      formData.append('bank_statements', f);
-    }
-
-    try {
-      const res = await fetch('/api/application', {
-        method: 'POST',
-        body: formData,
-      });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Something went wrong.');
-
-      form.style.display = 'none';
-      successEl.classList.add('show');
-      document.getElementById('refId')!.textContent = json.ref_id;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } catch (err: any) {
-      alert(err.message || 'Something went wrong. Please try again.');
-      submitLabel.textContent = 'Submit Application';
-      (form.querySelector('.btn') as HTMLButtonElement).disabled = false;
-    }
-  });
-})();
-</script>
+<script is:inline src="https://link.msgsndr.com/js/form_embed.js"></script>
