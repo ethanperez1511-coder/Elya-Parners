@@ -11,9 +11,8 @@ import Footer from '../components/Footer.astro';
   <section class="app-head">
     <div class="glow"></div>
     <div class="inner">
-      <div class="eyebrow"><span class="tick"></span>Private Business Lending</div>
       <h1>Business <em>application.</em></h1>
-      <p class="sub">A few details about your business and funding needs. Apply in about 3 minutes and get immediate attention from our team.</p>
+      <p class="sub">A few details about your business and funding needs.<br />Apply in about 3 minutes and get immediate attention from our team.</p>
     </div>
   </section>
 
@@ -43,19 +42,16 @@ import Footer from '../components/Footer.astro';
 </Base>
 
 <style>
-  .tick { width: 30px; height: 1px; background: var(--gold); }
-
   /* header band */
   .app-head {
     background: var(--navy); color: var(--paper); position: relative; overflow: hidden;
     padding: clamp(3rem,6vw,5.5rem) 0 clamp(2.6rem,5vw,4rem);
   }
   .app-head .glow { position: absolute; inset: 0; background: radial-gradient(90% 120% at 92% -10%, rgba(194,160,91,.16), transparent 55%); }
-  .app-head .inner { position: relative; z-index: 2; max-width: 1340px; margin: 0 auto; padding-inline: var(--gutter); }
-  .app-head .eyebrow { color: var(--gold-soft); display: flex; align-items: center; gap: 1ch; margin-bottom: 1.4rem; }
-  .app-head h1 { font-size: clamp(2.6rem,6vw,5rem); font-weight: 360; max-width: 18ch; }
+  .app-head .inner { position: relative; z-index: 2; max-width: 1340px; margin: 0 auto; padding-inline: var(--gutter); text-align: center; }
+  .app-head h1 { font-size: clamp(2.6rem,6vw,5rem); font-weight: 360; max-width: 18ch; margin-inline: auto; }
   .app-head h1 em { font-style: italic; color: var(--gold-soft); font-weight: 300; }
-  .app-head .sub { margin-top: 1.4rem; max-width: 52ch; color: var(--paper-70); font-weight: 300; font-size: clamp(1.05rem,1.4vw,1.25rem); }
+  .app-head .sub { margin: 1.4rem auto 0; max-width: 56ch; color: var(--paper-70); font-weight: 300; font-size: clamp(1.15rem,1.6vw,1.4rem); line-height: 1.6; }
 
   /* layout */
   .shell {
