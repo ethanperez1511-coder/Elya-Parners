@@ -1,0 +1,178 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const updated = 'July 15, 2026';
+---
+
+<Base
+  title="FCP Privacy Policy"
+  description="FCP privacy policy — how we collect, use, and handle information, including SMS messaging consent."
+>
+  <Nav variant="application" />
+
+  <!-- HEADER BAND -->
+  <section class="app-head">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="eyebrow"><span class="tick"></span>Legal</div>
+      <h1>FCP privacy <em>policy.</em></h1>
+      <p class="updated">Last updated: {updated}</p>
+    </div>
+  </section>
+
+  <article class="legal">
+    <p class="lede">FCP ("FCP," "we," "us," or "our") provides merchant cash advance brokerage services. This Privacy Policy explains how we collect, use, and handle information when you visit our website, request assistance, or communicate with our team.</p>
+
+    <section class="lsec">
+      <div class="no">01</div>
+      <div class="body">
+        <h2>Information We Collect</h2>
+        <p>We collect information you provide when requesting our services or communicating with us. This may include your name, business name, email address, telephone number, business and application information, supporting documents, and correspondence.</p>
+        <p>For SMS communications, we maintain your mobile number, messaging preferences, consent records, and relevant message history to provide support and manage your communication preferences.</p>
+        <p>Some information is collected automatically when you use our website:</p>
+        <ul>
+          <li><b>Hosting and server logs</b> — our hosting provider records technical request data such as your IP address, browser and device type, pages requested, referring page, and date and time of access.</li>
+          <li><b>Analytics cookies</b> — we use Google Analytics 4 to understand how our website is used. It sets first-party cookies and collects pages viewed, session activity, approximate location derived from IP address, device and browser characteristics, and referral source.</li>
+          <li><b>Form and scheduling embeds</b> — our inquiry and application forms are embedded from our customer relationship platform (LeadConnector / HighLevel). When a form loads or is submitted, that provider processes the information you enter and may set its own cookies or identifiers to operate the form.</li>
+        </ul>
+        <p>We do not use advertising or retargeting pixels on this website. Most browsers let you block or delete cookies; doing so may affect how parts of our website function.</p>
+      </div>
+    </section>
+
+    <section class="lsec">
+      <div class="no">02</div>
+      <div class="body">
+        <h2>How We Use Information</h2>
+        <p>We use information to:</p>
+        <ul>
+          <li>Respond to inquiries and provide personal guidance.</li>
+          <li>Assist with requested funding applications and related documentation.</li>
+          <li>Provide merchant support, follow-ups, and customer success assistance.</li>
+          <li>Coordinate communications about active requests.</li>
+          <li>Maintain communication preferences and consent records.</li>
+          <li>Protect our services, resolve disputes, and meet applicable recordkeeping and legal obligations.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="lsec">
+      <div class="no">03</div>
+      <div class="body">
+        <h2>Sharing Information</h2>
+        <p>When you request assistance with a funding application, we may share relevant business and application information with funding providers to evaluate and process your requested transaction, subject to any required authorization.</p>
+        <p>Service providers may process information on our behalf to support our website, business operations, and customer communications. We may also disclose information when required by law or valid legal process. These disclosures remain subject to the SMS-specific protections below.</p>
+        <p class="emphasis">FCP does not sell or share consumer personal information, including mobile phone numbers, with third parties or affiliates for marketing, promotional, or lead-generation purposes.</p>
+        <p class="emphasis">Text messaging originator opt-in data and consent will not be shared with third parties. Consent to receive messages from FCP does not authorize another business to send you messages.</p>
+      </div>
+    </section>
+
+    <section class="lsec">
+      <div class="no">04</div>
+      <div class="body">
+        <h2>SMS Communications</h2>
+        <p>With your consent, FCP sends merchant-support text messages, including personal guidance, follow-ups, responses to questions, and customer success assistance.</p>
+        <p>Message frequency varies based on your interactions and support needs. Message and data rates may apply.</p>
+        <p><b>Reply STOP to unsubscribe from SMS messages. Reply HELP for assistance</b>, or call <a href="tel:+17866002724">(786) 600-2724</a>. We honor opt-out requests and retain the information needed to maintain your messaging preferences.</p>
+        <p>SMS participation is voluntary and is not a condition of purchasing a product or service. Additional messaging terms are available in our <a href="/terms-of-service">Terms of Service</a>.</p>
+      </div>
+    </section>
+
+    <section class="lsec">
+      <div class="no">05</div>
+      <div class="body">
+        <h2>Information Security and Retention</h2>
+        <p>We use reasonable administrative, technical, and organizational safeguards to protect information. No electronic storage or transmission method can guarantee complete security.</p>
+        <p>We retain information for as long as reasonably necessary to provide requested services, maintain consent and opt-out records, resolve disputes, and satisfy applicable legal requirements.</p>
+      </div>
+    </section>
+
+    <section class="lsec">
+      <div class="no">06</div>
+      <div class="body">
+        <h2>Your Choices and Requests</h2>
+        <p>You may contact us to request access to, correction of, or deletion of your information, subject to applicable law and legitimate retention requirements. We may need to verify your identity before completing a request.</p>
+        <p>You may withdraw SMS consent at any time by replying STOP or contacting our support team.</p>
+      </div>
+    </section>
+
+    <section class="lsec">
+      <div class="no">07</div>
+      <div class="body">
+        <h2>Policy Updates</h2>
+        <p>We may update this Privacy Policy as our services or practices change. The current version and last-updated date will be published on this page. Where required, we will provide additional notice or obtain consent.</p>
+      </div>
+    </section>
+
+    <section class="lsec">
+      <div class="no">08</div>
+      <div class="body">
+        <h2>Contact Us</h2>
+        <p class="contact">
+          <b>FCP</b><br />
+          Phone: <a href="tel:+17866002724">(786) 600-2724</a><br />
+          Business mailing address: 66 W Flagler St, Miami, FL 33130
+        </p>
+      </div>
+    </section>
+  </article>
+
+  <Footer variant="application" />
+</Base>
+
+<style>
+  .tick { width: 30px; height: 1px; background: var(--gold); }
+
+  /* header band — mirrors apply.astro */
+  .app-head {
+    background: var(--navy); color: var(--paper); position: relative; overflow: hidden;
+    padding: clamp(3rem,6vw,5.5rem) 0 clamp(2.6rem,5vw,4rem);
+  }
+  .app-head .glow { position: absolute; inset: 0; background: radial-gradient(90% 120% at 92% -10%, rgba(194,160,91,.16), transparent 55%); }
+  .app-head .inner { position: relative; z-index: 2; max-width: 1340px; margin: 0 auto; padding-inline: var(--gutter); }
+  .app-head .eyebrow { color: var(--gold-soft); display: flex; align-items: center; gap: 1ch; margin-bottom: 1.4rem; }
+  .app-head h1 { font-size: clamp(2.6rem,6vw,5rem); font-weight: 360; max-width: 18ch; }
+  .app-head h1 em { font-style: italic; color: var(--gold-soft); font-weight: 300; }
+  .app-head .updated { margin-top: 1.4rem; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-soft); }
+
+  /* content */
+  .legal {
+    max-width: 800px; margin: 0 auto;
+    padding: clamp(2.5rem,5vw,4.5rem) var(--gutter) clamp(4rem,8vw,7rem);
+  }
+  .legal .lede {
+    font-size: 1.1rem; line-height: 1.75; color: var(--ink-60); font-weight: 300;
+    padding-bottom: clamp(2.2rem,4vw,3rem); margin-bottom: clamp(2.2rem,4vw,3rem);
+    border-bottom: 1px solid var(--hair-dark);
+  }
+  .lsec {
+    display: grid; grid-template-columns: 3.2rem 1fr; gap: 1.6rem;
+    padding-bottom: clamp(2.2rem,4vw,3rem); margin-bottom: clamp(2.2rem,4vw,3rem);
+    border-bottom: 1px solid var(--hair-dark);
+  }
+  .lsec:last-child { border-bottom: 0; margin-bottom: 0; }
+  .lsec .no { font-family: var(--serif); font-size: 1.05rem; color: var(--gold-deep); font-weight: 500; padding-top: .35rem; }
+  .lsec h2 { font-size: var(--t-h3); font-weight: 380; margin-bottom: 1.1rem; }
+  .lsec .body > p { color: var(--ink-60); margin-bottom: 1rem; font-size: 1rem; line-height: 1.75; }
+  .lsec .body > p:last-child { margin-bottom: 0; }
+  .lsec ul { margin: 0 0 1rem; padding-left: 1.1rem; display: flex; flex-direction: column; gap: .7rem; color: var(--ink-60); }
+  .lsec ul:last-child { margin-bottom: 0; }
+  .lsec li { line-height: 1.7; }
+  .lsec li::marker { color: var(--gold-deep); }
+  .lsec b { color: var(--ink); font-weight: 500; }
+  .lsec a { color: var(--gold-deep); text-decoration: underline; text-underline-offset: 3px; }
+  .lsec a:hover { color: var(--gold); }
+
+  .emphasis {
+    color: var(--ink) !important; font-family: var(--serif); font-style: italic;
+    font-size: 1.2rem !important; line-height: 1.5 !important; font-weight: 340;
+    border-left: 2px solid var(--gold); padding-left: 1.2rem; margin: 1.4rem 0 !important;
+  }
+  .contact { line-height: 1.9 !important; }
+
+  @media (max-width: 600px) {
+    .lsec { grid-template-columns: 1fr; gap: .5rem; }
+    .lsec .no { padding-top: 0; }
+  }
+</style>
