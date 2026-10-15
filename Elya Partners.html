@@ -314,7 +314,7 @@ img{display:block;max-width:100%}
 .sol-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2.5rem,5vw,4rem)}
 .sol-head h2{font-size:var(--t-h2);max-width:14ch;font-weight:360}
 .sol-head .sub{max-width:34ch;color:var(--ink-60)}
-.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,3vw,3rem) clamp(1.75rem,3.5vw,3.25rem)}
+.sol-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1.5rem,3vw,3rem) clamp(2rem,5vw,5rem)}
 .sol-card{
   position:relative;padding:clamp(2rem,3.2vw,3rem) 0 clamp(2.2rem,3.4vw,3.2rem);
   border-top:1px solid var(--hair-dark);transition:transform .5s var(--ease-out);
@@ -325,7 +325,7 @@ img{display:block;max-width:100%}
 .sol-card .no{font-family:var(--serif);font-size:1rem;color:var(--gold-deep);font-weight:500;letter-spacing:.06em}
 .sol-card h3{font-size:var(--t-h3);margin-top:1.4rem;font-weight:380;transition:color .4s var(--ease)}
 .sol-card:hover h3{color:var(--navy-700)}
-.sol-card p{margin-top:1rem;color:var(--ink-60);max-width:32ch;font-weight:400}
+.sol-card p{margin-top:1rem;color:var(--ink-60);max-width:36ch;font-weight:400}
 .sol-card .more{margin-top:1.6rem;display:inline-flex;align-items:center;gap:.7ch;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);opacity:0;transform:translateY(6px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
 .sol-card:hover .more{opacity:1;transform:none}
 
@@ -391,13 +391,12 @@ img{display:block;max-width:100%}
   .stat:nth-child(-n+2){border-top:0}
   .about-grid{grid-template-columns:1fr;gap:3rem}
   .about-media{max-width:480px}
-  .sol-grid{grid-template-columns:repeat(2,1fr)}
+  .sol-grid{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr;gap:3.5rem}
   .footer-top{grid-template-columns:1fr 1fr}
   .footer .brandcol{grid-column:1/-1}
 }
 @media (max-width:680px){
-  .sol-grid{grid-template-columns:1fr}
   .nav-links,.nav-right .btn{display:none}
   .nav-toggle{display:block}
   .mobile-menu .nav-links{display:flex}
@@ -535,14 +534,14 @@ img{display:block;max-width:100%}
     <div class="section-tag reveal"><span class="no">02</span><span class="nm">Solutions</span><span class="tline"></span></div>
     <div class="sol-head">
       <h2 class="reveal">What we offer</h2>
-      <p class="sub reveal d1">Three financing structures, each shaped to a different moment in your company's growth — and each underwritten by people who answer the phone.</p>
+      <p class="sub reveal d1">Four financing structures, each shaped to a different moment in your company's growth — and each underwritten by people who answer the phone.</p>
     </div>
     <div class="sol-grid">
       <article class="sol-card reveal">
         <div class="barline"></div>
         <div class="no">01</div>
         <h3>Asset-Based Lending</h3>
-        <p>Leverage your inventory to unlock working capital.</p>
+        <p>Leverage inventory, equipment, and real estate to unlock working capital.</p>
         <span class="more">Learn more →</span>
       </article>
       <article class="sol-card reveal d1">
@@ -552,9 +551,16 @@ img{display:block;max-width:100%}
         <p>Convert outstanding invoices into immediate cash flow.</p>
         <span class="more">Learn more →</span>
       </article>
-      <article class="sol-card reveal d2">
+      <article class="sol-card reveal">
         <div class="barline"></div>
         <div class="no">03</div>
+        <h3>Equipment Leasing</h3>
+        <p>Acquire the equipment you need without depleting reserves.</p>
+        <span class="more">Learn more →</span>
+      </article>
+      <article class="sol-card reveal d1">
+        <div class="barline"></div>
+        <div class="no">04</div>
         <h3>Working Capital</h3>
         <p>Bridge gaps, manage seasonality, and seize opportunities as they arrive.</p>
         <span class="more">Learn more →</span>
