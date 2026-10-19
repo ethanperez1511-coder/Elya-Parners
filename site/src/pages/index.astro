@@ -87,36 +87,51 @@ import Footer from '../components/Footer.astro';
       <div class="section-tag reveal"><span class="no">02</span><span class="nm">Solutions</span><span class="tline"></span></div>
       <div class="sol-head">
         <h2 class="reveal">What we offer</h2>
-        <p class="sub reveal d1">Four financing structures, each shaped to a different moment in your company's growth — and each underwritten by people who answer the phone.</p>
+        <p class="sub reveal">Flexible financing for every stage of your business.</p>
+        <p class="assurance reveal"><strong>Work directly with people who understand your business and answer the phone.</strong></p>
       </div>
       <div class="sol-grid">
         <article class="sol-card reveal">
           <div class="barline"></div>
           <div class="no">01</div>
-          <h3>Asset-Based Lending</h3>
-          <p>Leverage inventory, equipment, and real estate to unlock working capital.</p>
-          <span class="more">Learn more &rarr;</span>
+          <h3>Working Capital</h3>
+          <p>Fast, flexible funding for payroll, inventory, expansion, and unexpected expenses. Keep your business moving and act when opportunities arise.</p>
+          <a class="more" href="#contact" aria-label="Learn more about Working Capital">Learn more &rarr;</a>
         </article>
         <article class="sol-card reveal d1">
           <div class="barline"></div>
           <div class="no">02</div>
-          <h3>Receivables &amp; Factoring</h3>
-          <p>Convert outstanding invoices into immediate cash flow.</p>
-          <span class="more">Learn more &rarr;</span>
+          <h3>Lines of Credit &amp; Home Equity Financing</h3>
+          <p>Explore revolving credit lines or financing through your home’s equity. Access capital as business needs and opportunities arise.</p>
+          <a class="more" href="#contact" aria-label="Learn more about Lines of Credit &amp; Home Equity Financing">Learn more &rarr;</a>
         </article>
         <article class="sol-card reveal">
           <div class="barline"></div>
           <div class="no">03</div>
-          <h3>Equipment Leasing</h3>
-          <p>Acquire the equipment you need without depleting reserves.</p>
-          <span class="more">Learn more &rarr;</span>
+          <h3>Business Debt Consolidation</h3>
+          <p>Combine existing business debts into a potentially more manageable payment structure, helping you simplify repayments and improve cash flow.</p>
+          <a class="more" href="#contact" aria-label="Learn more about Business Debt Consolidation">Learn more &rarr;</a>
         </article>
         <article class="sol-card reveal d1">
           <div class="barline"></div>
           <div class="no">04</div>
-          <h3>Working Capital</h3>
-          <p>Bridge gaps, manage seasonality, and seize opportunities as they arrive.</p>
-          <span class="more">Learn more &rarr;</span>
+          <h3>Business Term Loans</h3>
+          <p>Invest in expansion and long-term growth with substantial funding, structured repayments, and longer financing terms.</p>
+          <a class="more" href="#contact" aria-label="Learn more about Business Term Loans">Learn more &rarr;</a>
+        </article>
+        <article class="sol-card reveal">
+          <div class="barline"></div>
+          <div class="no">05</div>
+          <h3>Real Estate Financing</h3>
+          <p>Financing for property acquisitions, renovations, development, and investment, structured around your project’s needs and goals.</p>
+          <a class="more" href="#contact" aria-label="Learn more about Real Estate Financing">Learn more &rarr;</a>
+        </article>
+        <article class="sol-card reveal d1">
+          <div class="barline"></div>
+          <div class="no">06</div>
+          <h3>Specialized Financing Solutions</h3>
+          <p>Explore invoice factoring, accounts receivable financing, equipment funding, and other options tailored to your business.</p>
+          <a class="more" href="#contact" aria-label="Learn more about Specialized Financing Solutions">Learn more &rarr;</a>
         </article>
       </div>
     </div>
@@ -323,15 +338,16 @@ import Footer from '../components/Footer.astro';
   }
 
   /* Solutions */
-  .sol-head {
-    display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap;
-    margin-bottom: clamp(2.5rem,5vw,4rem);
-  }
+  #solutions { padding-block: clamp(var(--s4), 5vw, var(--s5)); }
+  #solutions .section-tag { margin-bottom: var(--s3); }
+  .sol-head { display: grid; gap: var(--s1); margin-bottom: var(--s4); }
+  .sol-head .assurance { max-width: 64ch; color: var(--ink); }
+  .sol-head .assurance strong { font-weight: 500; }
   .sol-head h2 { font-size: var(--t-h2); max-width: 14ch; font-weight: 360; }
-  .sol-head .sub { max-width: 34ch; color: var(--ink-60); }
-  .sol-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.5rem,3vw,3rem) clamp(2rem,5vw,5rem); }
+  .sol-head .sub { margin-top: var(--s2); max-width: 54ch; color: var(--ink-60); }
+  .sol-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s2) clamp(var(--s4),5vw,var(--s5)); }
   .sol-card {
-    position: relative; padding: clamp(2rem,3.2vw,3rem) 0 clamp(2.2rem,3.4vw,3.2rem);
+    position: relative; padding: var(--s3) 0 var(--s2);
     border-top: 1px solid var(--hair-dark); transition: transform .5s var(--ease-out);
   }
   .sol-card .barline {
@@ -341,15 +357,16 @@ import Footer from '../components/Footer.astro';
   .sol-card:hover { transform: translateY(-8px); }
   .sol-card:hover .barline { transform: scaleX(1); }
   .sol-card .no { font-family: var(--serif); font-size: 1rem; color: var(--gold-deep); font-weight: 500; letter-spacing: .06em; }
-  .sol-card h3 { font-size: var(--t-h3); margin-top: 1.4rem; font-weight: 380; transition: color .4s var(--ease); }
+  .sol-card h3 { font-size: var(--t-h3); margin-top: var(--s2); font-weight: 380; transition: color .4s var(--ease); }
   .sol-card:hover h3 { color: var(--navy-700); }
-  .sol-card p { margin-top: 1rem; color: var(--ink-60); max-width: 36ch; font-weight: 400; }
+  .sol-card p { margin-top: var(--s2); color: var(--ink-60); max-width: 54ch; font-weight: 400; }
   .sol-card .more {
-    margin-top: 1.6rem; display: inline-flex; align-items: center; gap: .7ch;
+    margin-top: var(--s2); min-height: calc(var(--s4) + var(--s1)); display: inline-flex; align-items: center; gap: .7ch;
     font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-deep);
-    opacity: 0; transform: translateY(6px); transition: opacity .45s var(--ease), transform .45s var(--ease);
+    text-underline-offset: var(--s1);
   }
-  .sol-card:hover .more { opacity: 1; transform: none; }
+  .sol-card .more:hover { text-decoration: underline; }
+  .sol-card .more:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: var(--s1); }
 
   /* CTA band */
   .cta { background: var(--navy-900); color: var(--paper); position: relative; overflow: hidden; }
