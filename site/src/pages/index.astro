@@ -26,9 +26,9 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <!-- MARQUEE -->
-  <div class="marquee" aria-hidden="true">
+  <div class="marquee">
     <div class="marquee-track" id="marquee">
-      <span class="marquee-item">Fast Approvals<span class="dot"></span>Transparent Terms<span class="dot"></span>Direct Lender Access<span class="dot"></span>Flexible Structures<span class="dot"></span>Client-First Approach<span class="dot"></span></span>
+      <div class="marquee-item"><span>Fast Approvals</span><span class="dot" aria-hidden="true"></span><span>Transparent Terms</span><span class="dot" aria-hidden="true"></span><span>Direct Lender Access</span><span class="dot" aria-hidden="true"></span><span>Flexible Structures</span><span class="dot" aria-hidden="true"></span><span>Client-First Approach</span><span class="dot" aria-hidden="true"></span></div>
     </div>
   </div>
 
@@ -267,6 +267,16 @@ import Footer from '../components/Footer.astro';
     white-space: nowrap; letter-spacing: .01em;
   }
   .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex: none; }
+  @media (min-width: 1024px) {
+    .marquee-track { width: 100%; animation: none; }
+    .marquee-item { width: 100%; justify-content: space-between; gap: var(--s2); padding-inline: var(--gutter); }
+    .marquee-item ~ .marquee-item, .marquee-item .dot:last-child { display: none; }
+  }
+  @media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
+    .marquee-track { width: 100%; }
+    .marquee-item { width: 100%; flex-wrap: wrap; justify-content: center; gap: var(--s2) var(--s3); padding-inline: var(--gutter); }
+    .marquee-item ~ .marquee-item, .marquee-item .dot { display: none; }
+  }
 
   /* ============ STATS ============ */
   .stats { background: var(--navy); color: var(--paper); padding: clamp(4rem,8vw,7rem) 0; }
@@ -465,7 +475,9 @@ import Footer from '../components/Footer.astro';
     // Duplicate marquee content for seamless loop
     const mq = document.getElementById('marquee');
     if (mq?.firstElementChild) {
-      mq.appendChild(mq.firstElementChild.cloneNode(true));
+      const copy = mq.firstElementChild.cloneNode(true) as HTMLElement;
+      copy.setAttribute('aria-hidden', 'true');
+      mq.appendChild(copy);
     }
 
     // Scroll reveal + section tag lines
