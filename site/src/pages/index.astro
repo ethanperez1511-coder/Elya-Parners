@@ -28,7 +28,7 @@ import Footer from '../components/Footer.astro';
   <!-- MARQUEE -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track" id="marquee">
-      <span class="marquee-item">Fast Approvals<span class="dot"></span>Transparent Terms<span class="dot"></span>Asset-Based Lending<span class="dot"></span>Direct Lender Access<span class="dot"></span>Flexible Structures<span class="dot"></span>Client-First Approach<span class="dot"></span></span>
+      <span class="marquee-item">Fast Approvals<span class="dot"></span>Transparent Terms<span class="dot"></span>Direct Lender Access<span class="dot"></span>Flexible Structures<span class="dot"></span>Client-First Approach<span class="dot"></span></span>
     </div>
   </div>
 
@@ -261,7 +261,8 @@ import Footer from '../components/Footer.astro';
   @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
   @keyframes scrollx { to { transform: translateX(-50%); } }
   .marquee-item {
-    display: flex; align-items: center; gap: clamp(1.5rem,3vw,3rem); padding-inline: clamp(1.5rem,3vw,3rem);
+    display: flex; align-items: center; gap: clamp(var(--s3),3vw,calc(var(--s3) * 2));
+    padding-inline: clamp(var(--s3),3vw,calc(var(--s3) * 2)) 0;
     font-family: var(--serif); font-size: clamp(1.1rem,1.7vw,1.6rem); font-weight: 300;
     white-space: nowrap; letter-spacing: .01em;
   }
