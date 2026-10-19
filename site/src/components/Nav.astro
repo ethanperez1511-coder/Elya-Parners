@@ -47,14 +47,14 @@ const { variant = 'landing' } = Astro.props;
     gap: 2rem; min-height: 92px;
     padding: 1rem clamp(1.25rem, 3.3vw, 3rem);
     color: var(--white);
-    background: linear-gradient(180deg, rgba(8,19,32,.48), rgba(8,19,32,.12));
+    background: linear-gradient(180deg, color-mix(in srgb, var(--navy-900) 48%, transparent), transparent);
     transition: background .55s var(--ease), padding .55s var(--ease), box-shadow .55s var(--ease), border-color .55s var(--ease);
-    border-bottom: 1px solid transparent;
+    border-bottom: 0;
   }
   .nav.scrolled {
     background: rgba(8,19,32,.86);
     -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2);
-    border-bottom: 1px solid var(--hair-light);
+    border-bottom: 0;
     padding-top: 1rem; padding-bottom: 1rem;
   }
 
@@ -92,6 +92,26 @@ const { variant = 'landing' } = Astro.props;
   }
   .nav-links a:hover { color: var(--paper); }
   .nav-links a:hover::after { width: 100%; }
+  .nav > .nav-links { gap: var(--s1); }
+  .nav > .nav-links a {
+    justify-content: center;
+    padding: var(--s1) var(--s2);
+    border: 1px solid var(--hair-light);
+    border-radius: var(--radius);
+    background: var(--hair-light);
+    transition: background .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease);
+  }
+  .nav > .nav-links a::after { display: none; }
+  .nav > .nav-links a:is(:hover, :focus-visible) {
+    background: var(--navy-800);
+    border-color: var(--gold);
+    color: var(--white);
+  }
+  .nav > .nav-links a:active { background: var(--navy-900); }
+  .nav-right :global(.btn-nav) {
+    min-width: calc(var(--s6) * 2);
+    padding-inline: var(--s4);
+  }
   .nav-right { display: flex; justify-self: end; align-items: center; gap: 1rem; }
   .nav-toggle { display: none; min-width: 44px; min-height: 44px; background: none; border: 0; color: var(--paper); cursor: pointer; padding: .5rem; }
   .nav-toggle svg { display: block; }
