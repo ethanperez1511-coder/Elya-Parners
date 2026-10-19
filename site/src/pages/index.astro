@@ -66,16 +66,16 @@ import Footer from '../components/Footer.astro';
       <div class="section-tag reveal"><span class="no">01</span><span class="nm">About</span><span class="tline"></span></div>
       <div class="about-grid">
         <div class="about-copy reveal">
-          <h2>Pragmatic, asset-minded lending built on <em>trust.</em></h2>
+          <p class="about-label eyebrow">Direct lender · Since 2014</p>
+          <h2>A lending partner built on <em>trust.</em></h2>
           <div class="paras">
-            <p>We provide responsible financing to companies in motion — structured around real assets and real cash flow, not rigid checklists. <strong>Our work begins with understanding your business</strong>, then designing terms that move it forward.</p>
-            <p>Collaboration and transparency sit at the center of every relationship. We commit to clear terms, measurable outcomes, and a partnership that respects your time as much as your ambition.</p>
+            <p>Elya Partners provides flexible financing for growing businesses. We start by understanding your business and cash flow, then work with you to structure financing around your goals.</p>
+            <p><strong>Our commitment is to give you honest guidance, personal attention, and financing tailored to your business.</strong></p>
+            <p>You work directly with our team, with clear terms, straightforward answers, and respect for your time. A partner, not a portal.</p>
           </div>
         </div>
         <div class="about-media reveal d2">
           <div class="frame"><img src="/images/partners-handshake.jpg" alt="Business partners shaking hands" /></div>
-          <div class="badge">Direct<br />Lender</div>
-          <div class="cap"><div class="k">Since 2014</div><div class="v">A partner, not a portal.</div></div>
         </div>
       </div>
     </div>
@@ -304,30 +304,22 @@ import Footer from '../components/Footer.astro';
   .section-tag:is(.in) .tline { max-width: 240px; }
 
   /* About */
+  #about { padding-block: clamp(var(--s4), 5vw, var(--s5)); }
+  #about .section-tag { margin-bottom: var(--s3); }
+  .about-copy .about-label { color: var(--gold-deep); margin-bottom: var(--s2); }
   .about-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2.5rem,6vw,6rem); align-items: center; }
   .about-copy h2 { font-size: var(--t-h2); max-width: 16ch; font-weight: 360; }
   .about-copy h2 em { font-style: italic; color: var(--gold-deep); font-weight: 300; }
-  .about-copy .paras { margin-top: clamp(1.8rem,3vw,2.5rem); display: flex; flex-direction: column; gap: 1.4rem; max-width: 48ch; }
+  .about-copy .paras { margin-top: var(--s3); display: flex; flex-direction: column; gap: var(--s2); max-width: 48ch; }
   .about-copy p { color: var(--ink-60); font-weight: 400; }
   .about-copy p strong { color: var(--ink); font-weight: 500; }
   .about-media { position: relative; }
-  .about-media .frame { position: relative; overflow: hidden; aspect-ratio: 4/5; background: var(--navy-800); }
+  .about-media .frame { position: relative; overflow: hidden; aspect-ratio: 4/3; background: var(--navy-800); }
   .about-media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.82) contrast(1.02); transition: transform 1.4s var(--ease-out); }
   .about-media:hover img { transform: scale(1.04); }
   .about-media .frame::after {
     content: ""; position: absolute; inset: 0;
     background: linear-gradient(150deg, rgba(11,26,43,.12), rgba(11,26,43,.42)); mix-blend-mode: multiply;
-  }
-  .about-media .cap {
-    position: absolute; left: 0; bottom: 0; z-index: 2; background: var(--navy); color: var(--paper);
-    padding: 1.4rem 1.8rem; max-width: 62%;
-  }
-  .about-media .cap .k { font-size: var(--t-eyebrow); letter-spacing: .28em; text-transform: uppercase; color: var(--gold-soft); }
-  .about-media .cap .v { font-family: var(--serif); font-size: 1.35rem; font-weight: 300; margin-top: .5rem; line-height: 1.2; }
-  .about-media .badge {
-    position: absolute; top: -22px; right: -10px; z-index: 2; width: 120px; height: 120px; border-radius: 50%;
-    border: 1px solid var(--gold); color: var(--gold-deep); display: grid; place-items: center; text-align: center;
-    background: var(--paper); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; line-height: 1.5;
   }
 
   /* Solutions */
