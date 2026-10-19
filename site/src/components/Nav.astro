@@ -149,9 +149,14 @@ const { variant = 'landing' } = Astro.props;
 
   @media (max-width: 820px) {
     .nav { display: flex; justify-content: space-between; gap: 1rem; min-height: 80px; }
-    /* Paint the fixed header independently of the animated hero on iOS. */
-    .nav:not(.nav--app) { transform: translateZ(0); isolation: isolate; }
-    .nav:not(.nav--app) { padding-inline: var(--gutter); }
+    /* Keep the header in initial document layout on mobile, while retaining
+       its overlay position over the hero and its visibility during scrolling. */
+    .nav:not(.nav--app) {
+      position: sticky; top: 0;
+      height: calc(var(--s5) + var(--s2));
+      margin-bottom: calc(-1 * (var(--s5) + var(--s2)));
+      padding-inline: var(--gutter);
+    }
     .nav-links, .nav-right :global(.btn) { display: none; }
     .nav-toggle { display: block; }
     .mobile-menu .nav-links { display: flex; }
