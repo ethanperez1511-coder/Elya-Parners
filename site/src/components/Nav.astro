@@ -96,18 +96,18 @@ const { variant = 'landing' } = Astro.props;
   .nav > .nav-links a {
     justify-content: center;
     padding: var(--s1) var(--s2);
-    border: 1px solid var(--hair-light);
+    border: 1px solid transparent;
     border-radius: var(--radius);
-    background: var(--hair-light);
+    background: color-mix(in srgb, var(--hair-light) 30%, transparent);
     transition: background .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease);
   }
   .nav > .nav-links a::after { display: none; }
   .nav > .nav-links a:is(:hover, :focus-visible) {
-    background: var(--navy-800);
-    border-color: var(--gold);
+    background: color-mix(in srgb, var(--hair-light) 65%, transparent);
+    border-color: var(--hair-light);
     color: var(--white);
   }
-  .nav > .nav-links a:active { background: var(--navy-900); }
+  .nav > .nav-links a:active { background: var(--hair-light); }
   .nav-right :global(.btn-nav) {
     min-width: calc(var(--s6) * 2);
     padding-inline: var(--s4);
