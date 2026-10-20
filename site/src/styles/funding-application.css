@@ -1,0 +1,45 @@
+/* Injected only into the MyDeskiso v1 shadow root; keep its layout dimensions
+   so the signature canvas retains the size measured by the provider. */
+.mf {
+  --mf-font: var(--sans);
+  --mf-primary: var(--navy);
+  --mf-text: var(--ink);
+  --mf-bg: var(--white);
+  --mf-input-bg: #fff;
+  --mf-border: #8b939c;
+  --mf-radius: var(--radius);
+  --mf-input-radius: var(--radius);
+  --mf-card-border: 1px solid var(--hair-dark);
+  font-size: 16px;
+  line-height: 1.6;
+  box-shadow: none;
+}
+
+/* The page header already identifies Elya Partners. */
+.mf-head, .mf-powered { display: none; }
+.mf-field { margin-bottom: 22px; }
+.mf-label { font-size: 14px; font-weight: 600; }
+.mf-label .req, .mf-error { color: #a13522; }
+.mf-error { font-size: 13px; }
+.mf-input, .mf-select, .mf-textarea { min-height: 48px; }
+.mf-input[aria-invalid="true"], .mf-select[aria-invalid="true"], .mf-textarea[aria-invalid="true"] { border-color: #a13522; }
+.mf-choices label { min-height: 44px; font-size: 16px; }
+.mf-choices input, .mf-consent input { accent-color: var(--navy); }
+.mf-consent { border-style: solid; }
+.mf-consent label { font-size: 14px; line-height: 1.6; }
+.mf-consent .terms { font-size: 13px; opacity: 1; }
+.mf-hint { font-size: 13px; opacity: 1; color: var(--ink-60); }
+.mf-btn { min-height: 52px; min-width: 140px; background: var(--gold); border-color: var(--gold); color: var(--navy); }
+.mf-btn:hover:not(:disabled) { background: var(--gold-soft); border-color: var(--gold-soft); }
+.mf-btn.ghost { background: transparent; border-color: var(--navy); color: var(--navy); }
+.mf-nav { flex-wrap: wrap; }
+.mf-nav .mf-btn[style*="hidden"] { display: none; }
+.mf-nav .mf-btn:last-child { margin-left: auto; }
+.mf-sig .mf-sig-clear { min-height: 44px; font-size: 14px; }
+.mf-docs li { overflow-wrap: anywhere; }
+.mf-docs li span { min-width: 0; }
+.mf-docs li button { min-height: 44px; }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+}

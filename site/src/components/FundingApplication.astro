@@ -1,0 +1,132 @@
+<section class="application" aria-label="Funding application">
+  <p id="application-status" class="application-status" role="status">Loading your application…</p>
+  <div id="elya-application" aria-busy="true"></div>
+  <div id="application-unavailable" class="application-unavailable" hidden>
+    <p>The application couldn’t be loaded. Please refresh the page or call us for help.</p>
+    <a href="tel:+17866002724">Call +1-786-600-2724</a>
+  </div>
+  <noscript>
+    <p>Please enable JavaScript to complete the application, or call <a href="tel:+17866002724">+1-786-600-2724</a> for assistance.</p>
+  </noscript>
+  <p class="application-help">Need help with your application? <a href="tel:+17866002724">Call our team</a>.</p>
+</section>
+
+<style>
+  .application { min-width: 0; }
+  .application-status, .application-unavailable { padding: 1.5rem; text-align: center; }
+  .application-unavailable { border: 1px solid var(--hair-dark); border-radius: var(--radius); }
+  .application-unavailable[hidden], .application-status[hidden] { display: none; }
+  .application-unavailable a, .application-help a { color: var(--navy); text-decoration: underline; text-underline-offset: .2em; }
+  .application-help { margin: var(--s3) auto 0; text-align: center; font-size: .9rem; color: var(--ink-60); }
+  #elya-application[aria-busy="true"] { visibility: hidden; }
+  #elya-application[hidden] { display: none; }
+  a:focus-visible { outline: 2px solid var(--navy); outline-offset: 4px; }
+</style>
+
+<script>
+  import brandStyles from '../styles/funding-application.css?inline';
+
+  type EmbedAPI = { mount: (host: HTMLElement, formId: string) => Promise<void> };
+  const embedWindow = window as Window & { MyDeskisoForm?: EmbedAPI };
+  const host = document.getElementById('elya-application');
+  const status = document.getElementById('application-status');
+  const unavailable = document.getElementById('application-unavailable');
+
+  if (host && status && unavailable) {
+    let ready = false;
+    const showUnavailable = () => {
+      if (ready) return;
+      status.hidden = true;
+      const providerMessage = host.shadowRoot?.querySelector('p')?.textContent;
+      // A slow request may still succeed; keep its host measurable for signature sizing.
+      host.hidden = Boolean(providerMessage);
+      const message = unavailable.querySelector('p');
+      if (providerMessage && message) message.textContent = `${providerMessage} Please call our team for help.`;
+      unavailable.hidden = false;
+      host.setAttribute('aria-busy', 'false');
+    };
+    // Keep a stalled provider request from leaving an unexplained blank page.
+    const timeout = window.setTimeout(showUnavailable, 15000);
+
+    const mount = async () => {
+      try {
+        if (!embedWindow.MyDeskisoForm) throw new Error('Form loader unavailable');
+        // The host starts without data-mydeskiso-form so the loader cannot auto-mount
+        // it a second time. mount adds that attribute and fetches a fresh form nonce.
+        await embedWindow.MyDeskisoForm.mount(host, 'cmv76igt2000106l6z7jfrs6k');
+        const root = host.shadowRoot;
+        if (!root?.querySelector('.mf')) throw new Error('Form unavailable');
+
+        // Vendor v1 renders in an open shadow root. Keep the official fields,
+        // consents, uploads and submission flow; scope visual branding here.
+        const style = document.createElement('style');
+        style.dataset.elyaBrand = '';
+        style.textContent = brandStyles;
+        root.append(style);
+
+        // Connect vendor field errors to their controls without changing validation.
+        const enhanceFields = () => {
+          root.querySelectorAll<HTMLElement>('.mf-field').forEach((field) => {
+            const controls = field.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea');
+            const error = field.querySelector<HTMLElement>('.mf-error');
+            const label = field.querySelector<HTMLElement>('.mf-label');
+            const key = field.dataset.key;
+            if (!error || !label || !key) return;
+            error.id = `application-error-${key}`;
+            label.id = `application-label-${key}`;
+            controls.forEach((control) => {
+              control.setAttribute('aria-describedby', error.id);
+              control.setAttribute('aria-invalid', String(Boolean(error.textContent?.trim())));
+              if (label.querySelector('.req') && control.type !== 'checkbox') {
+                control.setAttribute('aria-required', 'true');
+              }
+            });
+            const group = field.querySelector<HTMLElement>('.mf-choices');
+            if (group) {
+              group.setAttribute('role', controls[0]?.type === 'radio' ? 'radiogroup' : 'group');
+              group.setAttribute('aria-labelledby', label.id);
+            }
+          });
+          const upload = root.querySelector<HTMLInputElement>('input[type="file"]');
+          const uploadLabel = root.querySelector<HTMLElement>('.mf-docs .mf-label');
+          if (upload && uploadLabel) {
+            uploadLabel.id = 'application-document-label';
+            upload.setAttribute('aria-labelledby', uploadLabel.id);
+          }
+          root.querySelector('.mf-success')?.setAttribute('role', 'status');
+        };
+        enhanceFields();
+        new MutationObserver(enhanceFields).observe(root, { childList: true, subtree: true, characterData: true });
+        root.addEventListener('click', (event) => {
+          const target = event.target;
+          if (!(target instanceof Element) || !target.closest('.mf-btn')) return;
+          // The vendor performs its synchronous validation first.
+          queueMicrotask(() => {
+            enhanceFields();
+            root.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
+          });
+        });
+        ready = true;
+        host.hidden = false;
+        status.hidden = true;
+        unavailable.hidden = true;
+        host.setAttribute('aria-busy', 'false');
+      } catch {
+        showUnavailable();
+      } finally {
+        window.clearTimeout(timeout);
+      }
+    };
+
+    // Load only on /apply. The provider owns all submission and document handling.
+    const script = document.createElement('script');
+    script.src = 'https://app.mydeskiso.com/embed/v1.js';
+    script.async = true;
+    script.addEventListener('load', mount, { once: true });
+    script.addEventListener('error', () => {
+      window.clearTimeout(timeout);
+      showUnavailable();
+    }, { once: true });
+    document.head.append(script);
+  }
+</script>

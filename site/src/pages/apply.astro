@@ -2,9 +2,10 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import FundingApplication from '../components/FundingApplication.astro';
 ---
 
-<Base title="Business Application — Elya Partners">
+<Base title="Business Application — Elya Partners" leadConnector={false}>
   <Nav variant="application" />
 
   <!-- HEADER BAND -->
@@ -17,25 +18,7 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <div class="shell" id="formShell">
-    <div class="ghl-embed">
-      <iframe
-        src="https://api.leadconnectorhq.com/widget/form/WaAHXYOWZ2mStwZwRhhY"
-        style="width:100%;height:3082px;border:none;border-radius:2px"
-        id="inline-WaAHXYOWZ2mStwZwRhhY"
-        data-layout="{'id':'INLINE'}"
-        data-trigger-type="alwaysShow"
-        data-trigger-value=""
-        data-activation-type="alwaysActivated"
-        data-activation-value=""
-        data-deactivation-type="neverDeactivate"
-        data-deactivation-value=""
-        data-form-name="MCA Apply Now - Elya"
-        data-height="3082"
-        data-layout-iframe-id="inline-WaAHXYOWZ2mStwZwRhhY"
-        data-form-id="WaAHXYOWZ2mStwZwRhhY"
-        title="MCA Apply Now - Elya"
-      ></iframe>
-    </div>
+    <FundingApplication />
   </div>
 
   <Footer variant="application" />
@@ -59,106 +42,4 @@ import Footer from '../components/Footer.astro';
     padding: clamp(2.5rem,5vw,4.5rem) var(--gutter) clamp(4rem,8vw,7rem);
   }
 
-  /* form */
-  form { display: flex; flex-direction: column; gap: clamp(3rem,5vw,4.5rem); }
-  .fsec { scroll-margin-top: 90px; }
-  .fsec-head { display: flex; align-items: baseline; gap: 1.2ch; padding-bottom: 1.4rem; margin-bottom: 2rem; border-bottom: 1px solid var(--hair-dark); }
-  .fsec-head .no { font-family: var(--serif); font-size: 1.05rem; color: var(--gold-deep); font-weight: 500; }
-  .fsec-head h2 { font-size: var(--t-h3); font-weight: 380; }
-  .fsec-head .ct { margin-left: auto; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-40); white-space: nowrap; }
-
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 1.75rem; }
-  .grid-3 { display: grid; grid-template-columns: 1.6fr .8fr .8fr; gap: 1.5rem 1.75rem; }
-  .col-2 { grid-column: span 2; }
-
-  .field { display: flex; flex-direction: column; gap: .55rem; min-width: 0; }
-  .field label { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-60); font-weight: 500; }
-  .field label .req { color: var(--gold-deep); margin-left: .3ch; }
-  .field input, .field select, .field textarea {
-    font-family: var(--sans); font-size: 1rem; color: var(--ink); background: var(--paper);
-    border: 1px solid var(--hair-dark); border-radius: 2px; padding: .85rem 1rem; outline: none; width: 100%;
-    transition: border-color .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease);
-  }
-  .field textarea { resize: vertical; min-height: 110px; line-height: 1.55; }
-  .field input::placeholder, .field textarea::placeholder { color: var(--ink-40); }
-  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(194,160,91,.14); background: #fff; }
-  .field input.invalid, .field select.invalid { border-color: #b5503a; }
-  .field select {
-    appearance: none; -webkit-appearance: none; cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A6863F' stroke-width='1.3' fill='none'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.6rem;
-  }
-
-  /* segmented yes/no */
-  .seg { display: inline-flex; border: 1px solid var(--hair-dark); border-radius: 2px; overflow: hidden; width: fit-content; background: var(--paper); }
-  .seg input { position: absolute; opacity: 0; pointer-events: none; }
-  .seg label { padding: .7rem 1.6rem; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; color: var(--ink-60); transition: color .3s var(--ease), background .3s var(--ease); border-right: 1px solid var(--hair-dark); }
-  .seg label:last-of-type { border-right: 0; }
-  .seg input:checked + label { background: var(--navy); color: var(--paper); }
-
-  /* dropzone */
-  .dropzone {
-    border: 1.5px dashed var(--hair-dark); border-radius: 2px; padding: clamp(2rem,4vw,3rem); text-align: center; background: var(--paper);
-    transition: border-color .3s var(--ease), background .3s var(--ease); cursor: pointer;
-  }
-  .dropzone:hover, .dropzone.drag { border-color: var(--gold); background: #fff; }
-  .dropzone .ic { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold-deep); display: grid; place-items: center; margin: 0 auto 1rem; }
-  .dropzone .big { font-family: var(--serif); font-size: 1.25rem; font-weight: 340; }
-  .dropzone .small { margin-top: .5rem; color: var(--ink-40); font-size: .85rem; }
-  .dropzone .browse { color: var(--gold-deep); text-decoration: underline; text-underline-offset: 3px; }
-  .filelist { margin-top: 1.2rem; display: flex; flex-direction: column; gap: .6rem; }
-  .filelist .file { display: flex; align-items: center; gap: .9ch; padding: .7rem 1rem; background: var(--paper-2); border-radius: 2px; font-size: .9rem; }
-  .filelist .file .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .filelist .file .sz { color: var(--ink-40); font-size: .8rem; }
-  .filelist .file .x { cursor: pointer; color: var(--ink-40); border: 0; background: none; font-size: 1.1rem; line-height: 1; padding: 0 .2rem; }
-  .filelist .file .x:hover { color: var(--gold-deep); }
-
-  /* terms */
-  .terms-box { background: var(--paper); border: 1px solid var(--hair-dark); border-radius: 2px; padding: clamp(1.4rem,2.5vw,2rem); max-height: 230px; overflow-y: auto; color: var(--ink-60); font-size: .9rem; line-height: 1.65; }
-  .terms-box h4 { font-family: var(--sans); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); margin-bottom: .8rem; }
-  .terms-box p { margin-bottom: .9rem; }
-  .terms-box::-webkit-scrollbar { width: 8px; }
-  .terms-box::-webkit-scrollbar-thumb { background: var(--hair-dark); border-radius: 8px; }
-  .agree { display: flex; gap: 1ch; align-items: flex-start; margin-top: 1.4rem; cursor: pointer; font-size: .95rem; color: var(--ink); }
-  .agree input { position: absolute; opacity: 0; }
-  .agree .box { flex: none; width: 20px; height: 20px; border: 1px solid var(--hair-dark); border-radius: 2px; background: var(--paper); display: grid; place-items: center; margin-top: 1px; transition: all .25s var(--ease); }
-  .agree .box svg { opacity: 0; transform: scale(.6); transition: all .25s var(--ease); color: var(--paper); }
-  .agree input:checked + .box { background: var(--navy); border-color: var(--navy); }
-  .agree input:checked + .box svg { opacity: 1; transform: scale(1); }
-
-  /* signature */
-  .sig-grid { display: grid; grid-template-columns: 1.4fr .9fr; gap: 1.75rem; margin-top: 2rem; }
-  .sig-wrap { display: flex; flex-direction: column; gap: .55rem; }
-  .sig-pad { position: relative; background: var(--paper); border: 1px solid var(--hair-dark); border-radius: 2px; height: 150px; touch-action: none; cursor: crosshair; }
-  .sig-pad canvas { display: block; width: 100%; height: 100%; border-radius: 2px; }
-  .sig-pad .line { position: absolute; left: 1rem; right: 1rem; bottom: 36px; border-bottom: 1px solid var(--hair-dark); pointer-events: none; }
-  .sig-pad .x { position: absolute; left: 1rem; bottom: 18px; color: var(--ink-40); font-size: 1.1rem; pointer-events: none; }
-  .sig-pad .ph { position: absolute; inset: 0; display: grid; place-items: center; color: var(--ink-40); font-style: italic; font-family: var(--serif); font-size: 1.1rem; pointer-events: none; transition: opacity .3s; }
-  .sig-clear { align-self: flex-start; background: none; border: 0; color: var(--gold-deep); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; padding: .2rem 0; }
-  .sig-clear:hover { text-decoration: underline; text-underline-offset: 3px; }
-
-  /* submit */
-  .submit-bar { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; padding-top: 2.4rem; border-top: 1px solid var(--hair-dark); }
-  .submit-bar .note { display: flex; align-items: center; gap: .8ch; color: var(--ink-60); font-size: .9rem; }
-  .submit-bar .note .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 0 rgba(194,160,91,.6); animation: pulse 2.4s infinite; }
-  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(194,160,91,.55); } 70% { box-shadow: 0 0 0 8px rgba(194,160,91,0); } 100% { box-shadow: 0 0 0 0 rgba(194,160,91,0); } }
-
-  /* success */
-  .success { display: none; text-align: center; padding: clamp(3rem,7vw,6rem) 0; }
-  .success.show { display: block; animation: fadeUp .8s var(--ease-out); }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-  .success .seal { width: 88px; height: 88px; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold-deep); display: grid; place-items: center; margin: 0 auto 2rem; }
-  .success h2 { font-size: var(--t-h2); font-weight: 340; max-width: 18ch; margin: 0 auto; }
-  .success h2 em { font-style: italic; color: var(--gold-deep); font-weight: 300; }
-  .success p { margin: 1.4rem auto 0; max-width: 46ch; color: var(--ink-60); }
-  .success .ref { margin-top: 2rem; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-40); }
-  .success .ref b { color: var(--ink); font-family: var(--serif); letter-spacing: .02em; }
-
-  @media (max-width: 680px) {
-    .grid, .grid-3 { grid-template-columns: 1fr; }
-    .col-2 { grid-column: span 1; }
-    .sig-grid { grid-template-columns: 1fr; }
-  }
 </style>
-
-<script is:inline src="https://link.msgsndr.com/js/form_embed.js"></script>

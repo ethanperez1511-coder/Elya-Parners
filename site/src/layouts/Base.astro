@@ -2,9 +2,10 @@
 interface Props {
   title: string;
   description?: string;
+  leadConnector?: boolean;
 }
 
-const { title, description = 'Elya Partners — Private Business Lending. Fast, flexible, fairly-priced capital for growing businesses.' } = Astro.props;
+const { title, description = 'Elya Partners — Private Business Lending. Fast, flexible, fairly-priced capital for growing businesses.', leadConnector = true } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -28,7 +29,7 @@ const { title, description = 'Elya Partners — Private Business Lending. Fast, 
 <body>
   <div class="grain" aria-hidden="true"></div>
   <slot />
-  <script is:inline src="https://link.msgsndr.com/js/form_embed.js"></script>
+  {leadConnector && <script is:inline src="https://link.msgsndr.com/js/form_embed.js"></script>}
 </body>
 </html>
 
