@@ -1,5 +1,4 @@
-/* Injected only into the MyDeskiso v1 shadow root; keep its layout dimensions
-   so the signature canvas retains the size measured by the provider. */
+/* Adopted in the MyDeskiso v1 shadow root before the provider measures its canvas. */
 .mf {
   --mf-font: var(--sans);
   --mf-primary: var(--navy);
@@ -13,11 +12,49 @@
   font-size: 16px;
   line-height: 1.6;
   box-shadow: none;
+  width: 100%;
+  max-width: 1000px;
+  padding: clamp(20px, 3vw, 40px);
 }
 
 /* The page header already identifies Elya Partners. */
 .mf-head, .mf-powered { display: none; }
-.mf-field { margin-bottom: 22px; }
+.elya-field-group { display: grid; gap: 24px; }
+.elya-field-group + .elya-field-group {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--hair-mid);
+}
+.elya-field-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.elya-field-row > .mf-field { min-width: 0; margin-bottom: 0; }
+.mf-field { min-width: 0; }
+.mf-input, .mf-select, .mf-textarea { min-width: 0; max-width: 100%; }
+.mf-field[data-key="informationForAiAnalysis"] .mf-textarea {
+  min-height: calc(3lh + 22px);
+}
+.mf-consent {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-width: 1px 0 0;
+  border-color: var(--hair-mid);
+  border-radius: 0;
+}
+
+@media (min-width: 760px) {
+  .elya-field-row[data-columns="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .elya-field-row[data-columns="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .elya-field-row[data-columns="2"][data-layout="wide-first"] { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+  .elya-field-row[data-columns="3"][data-layout="city"] { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); }
+  @supports (grid-template-rows: subgrid) {
+    /* Keep controls aligned when one label wraps or an error needs another line. */
+    .elya-field-row { row-gap: 0; }
+    .elya-field-row > .mf-field {
+      display: grid;
+      grid-row: span 3;
+      grid-template-rows: subgrid;
+    }
+  }
+}
 .mf-label { font-size: 14px; font-weight: 600; }
 .mf-label .req, .mf-error { color: #a13522; }
 .mf-error { font-size: 13px; }

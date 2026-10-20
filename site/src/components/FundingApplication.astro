@@ -25,6 +25,7 @@
 
 <script>
   import brandStyles from '../styles/funding-application.css?inline';
+  import { createFundingLayout } from '../scripts/funding-layout';
 
   type EmbedAPI = { mount: (host: HTMLElement, formId: string) => Promise<void> };
   const embedWindow = window as Window & { MyDeskisoForm?: EmbedAPI };
@@ -51,21 +52,21 @@
     const mount = async () => {
       try {
         if (!embedWindow.MyDeskisoForm) throw new Error('Form loader unavailable');
+        // Adopted styles survive the provider's innerHTML reset and apply before
+        // it measures the signature canvas, including the new desktop width.
+        const root = host.shadowRoot ?? host.attachShadow({ mode: 'open' });
+        const stylesheet = new CSSStyleSheet();
+        stylesheet.replaceSync(brandStyles);
+        root.adoptedStyleSheets = [...root.adoptedStyleSheets, stylesheet];
         // The host starts without data-mydeskiso-form so the loader cannot auto-mount
         // it a second time. mount adds that attribute and fetches a fresh form nonce.
         await embedWindow.MyDeskisoForm.mount(host, 'cmv76igt2000106l6z7jfrs6k');
-        const root = host.shadowRoot;
-        if (!root?.querySelector('.mf')) throw new Error('Form unavailable');
-
-        // Vendor v1 renders in an open shadow root. Keep the official fields,
-        // consents, uploads and submission flow; scope visual branding here.
-        const style = document.createElement('style');
-        style.dataset.elyaBrand = '';
-        style.textContent = brandStyles;
-        root.append(style);
+        if (!root.querySelector('.mf')) throw new Error('Form unavailable');
+        const layoutFields = createFundingLayout(root);
 
         // Connect vendor field errors to their controls without changing validation.
         const enhanceFields = () => {
+          layoutFields();
           root.querySelectorAll<HTMLElement>('.mf-field').forEach((field) => {
             const controls = field.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea');
             const error = field.querySelector<HTMLElement>('.mf-error');
